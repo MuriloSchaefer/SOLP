@@ -1,0 +1,173 @@
+@startuml
+annotation java.lang.SuppressWarnings
+class dao.EnderecoDAO
+class dao.FornecedorDAO
+class dao.FuncionarioDAO
+class dao.conectaBanco
+class java.awt.event.KeyEvent
+class java.math.BigInteger
+class java.security.MessageDigest
+class java.security.NoSuchAlgorithmException
+class java.sql.Connection
+class java.sql.DriverManager
+class java.sql.PreparedStatement
+class java.sql.ResultSet
+class java.sql.SQLException
+class java.sql.Statement
+class java.util.ArrayList
+class java.util.List
+class java.util.logging.Level
+class java.util.logging.Logger
+class javax.swing.JFrame
+class javax.swing.JOptionPane
+class javax.swing.table.DefaultTableModel
+class solp.control.controladorEndereco
+class solp.control.controladorFornecedor
+class solp.control.controladorFuncionario
+class solp.control.controladorLogin
+class solp.model.Endereco
+class solp.model.Fornecedor
+class solp.model.Funcionario
+class solp.view.UICadastrarFornecedor
+class solp.view.UICadastrarFuncionario
+class solp.view.UIConsultarFornecedor
+class solp.view.UIConsultarFuncionario
+class solp.view.UIExcluirFornecedor
+class solp.view.UIExcluirFuncionario
+class solp.view.UILogin
+class solp.view.UIPrincipal
+dao.EnderecoDAO ..> java.math.BigInteger
+dao.EnderecoDAO ..> java.security.MessageDigest
+dao.EnderecoDAO ..> java.security.NoSuchAlgorithmException
+dao.EnderecoDAO ..> java.sql.Connection
+dao.EnderecoDAO ..> java.sql.PreparedStatement
+dao.EnderecoDAO ..> java.sql.ResultSet
+dao.EnderecoDAO ..> java.sql.SQLException
+dao.EnderecoDAO ..> java.sql.Statement
+dao.EnderecoDAO ..> java.util.ArrayList
+dao.EnderecoDAO ..> java.util.List
+dao.EnderecoDAO ..> java.util.logging.Level
+dao.EnderecoDAO ..> java.util.logging.Logger
+dao.EnderecoDAO ..> solp.model.Endereco
+dao.FornecedorDAO ..> java.sql.Connection
+dao.FornecedorDAO ..> java.sql.PreparedStatement
+dao.FornecedorDAO ..> java.sql.ResultSet
+dao.FornecedorDAO ..> java.sql.SQLException
+dao.FornecedorDAO ..> java.sql.Statement
+dao.FornecedorDAO ..> java.util.ArrayList
+dao.FornecedorDAO ..> java.util.List
+dao.FornecedorDAO ..> java.util.logging.Level
+dao.FornecedorDAO ..> java.util.logging.Logger
+dao.FornecedorDAO ..> solp.model.Endereco
+dao.FornecedorDAO ..> solp.model.Fornecedor
+dao.FuncionarioDAO ..> java.math.BigInteger
+dao.FuncionarioDAO ..> java.security.MessageDigest
+dao.FuncionarioDAO ..> java.security.NoSuchAlgorithmException
+dao.FuncionarioDAO ..> java.sql.Connection
+dao.FuncionarioDAO ..> java.sql.PreparedStatement
+dao.FuncionarioDAO ..> java.sql.ResultSet
+dao.FuncionarioDAO ..> java.sql.SQLException
+dao.FuncionarioDAO ..> java.sql.Statement
+dao.FuncionarioDAO ..> java.util.ArrayList
+dao.FuncionarioDAO ..> java.util.List
+dao.FuncionarioDAO ..> java.util.logging.Level
+dao.FuncionarioDAO ..> java.util.logging.Logger
+dao.FuncionarioDAO ..> solp.model.Endereco
+dao.FuncionarioDAO ..> solp.model.Funcionario
+dao.conectaBanco ..> java.sql.Connection
+dao.conectaBanco ..> java.sql.DriverManager
+dao.conectaBanco ..> java.sql.SQLException
+dao.conectaBanco ..> javax.swing.JOptionPane
+solp.control.controladorEndereco ..> dao.EnderecoDAO
+solp.control.controladorEndereco ..> java.sql.SQLException
+solp.control.controladorEndereco ..> java.util.List
+solp.control.controladorEndereco ..> solp.model.Endereco
+solp.control.controladorFornecedor ..> dao.FornecedorDAO
+solp.control.controladorFornecedor ..> java.sql.SQLException
+solp.control.controladorFornecedor ..> java.util.List
+solp.control.controladorFornecedor ..> solp.model.Fornecedor
+solp.control.controladorFuncionario ..> dao.FuncionarioDAO
+solp.control.controladorFuncionario ..> java.security.NoSuchAlgorithmException
+solp.control.controladorFuncionario ..> java.sql.SQLException
+solp.control.controladorFuncionario ..> java.util.List
+solp.control.controladorFuncionario ..> javax.swing.JOptionPane
+solp.control.controladorFuncionario ..> solp.model.Endereco
+solp.control.controladorFuncionario ..> solp.model.Funcionario
+solp.control.controladorLogin ..> dao.FuncionarioDAO
+solp.control.controladorLogin ..> java.math.BigInteger
+solp.control.controladorLogin ..> java.security.MessageDigest
+solp.control.controladorLogin ..> java.security.NoSuchAlgorithmException
+solp.control.controladorLogin ..> java.sql.SQLException
+solp.control.controladorLogin ..> java.util.List
+solp.control.controladorLogin ..> solp.model.Funcionario
+solp.model.Fornecedor ..> java.util.List
+solp.view.UICadastrarFornecedor ..> java.lang.SuppressWarnings
+solp.view.UICadastrarFornecedor ..> java.util.ArrayList
+solp.view.UICadastrarFornecedor ..> java.util.List
+solp.view.UICadastrarFornecedor --|> javax.swing.JFrame
+solp.view.UICadastrarFornecedor ..> javax.swing.table.DefaultTableModel
+solp.view.UICadastrarFornecedor ..> solp.control.controladorFornecedor
+solp.view.UICadastrarFornecedor ..> solp.model.Endereco
+solp.view.UICadastrarFornecedor ..> solp.model.Fornecedor
+solp.view.UICadastrarFuncionario ..> java.lang.SuppressWarnings
+solp.view.UICadastrarFuncionario ..> java.security.NoSuchAlgorithmException
+solp.view.UICadastrarFuncionario ..> java.sql.SQLException
+solp.view.UICadastrarFuncionario ..> java.util.List
+solp.view.UICadastrarFuncionario ..> java.util.logging.Level
+solp.view.UICadastrarFuncionario ..> java.util.logging.Logger
+solp.view.UICadastrarFuncionario --|> javax.swing.JFrame
+solp.view.UICadastrarFuncionario ..> javax.swing.JOptionPane
+solp.view.UICadastrarFuncionario ..> solp.control.controladorEndereco
+solp.view.UICadastrarFuncionario ..> solp.control.controladorFuncionario
+solp.view.UICadastrarFuncionario ..> solp.model.Endereco
+solp.view.UICadastrarFuncionario ..> solp.model.Funcionario
+solp.view.UIConsultarFornecedor ..> java.lang.SuppressWarnings
+solp.view.UIConsultarFornecedor ..> java.sql.SQLException
+solp.view.UIConsultarFornecedor ..> java.util.List
+solp.view.UIConsultarFornecedor ..> java.util.logging.Level
+solp.view.UIConsultarFornecedor ..> java.util.logging.Logger
+solp.view.UIConsultarFornecedor --|> javax.swing.JFrame
+solp.view.UIConsultarFornecedor ..> javax.swing.table.DefaultTableModel
+solp.view.UIConsultarFornecedor ..> solp.control.controladorFornecedor
+solp.view.UIConsultarFuncionario ..> java.lang.SuppressWarnings
+solp.view.UIConsultarFuncionario ..> java.sql.SQLException
+solp.view.UIConsultarFuncionario ..> java.util.List
+solp.view.UIConsultarFuncionario ..> java.util.logging.Level
+solp.view.UIConsultarFuncionario ..> java.util.logging.Logger
+solp.view.UIConsultarFuncionario --|> javax.swing.JFrame
+solp.view.UIConsultarFuncionario ..> javax.swing.table.DefaultTableModel
+solp.view.UIConsultarFuncionario ..> solp.control.controladorFuncionario
+solp.view.UIExcluirFornecedor ..> java.lang.SuppressWarnings
+solp.view.UIExcluirFornecedor ..> java.sql.SQLException
+solp.view.UIExcluirFornecedor ..> java.util.List
+solp.view.UIExcluirFornecedor ..> java.util.logging.Level
+solp.view.UIExcluirFornecedor ..> java.util.logging.Logger
+solp.view.UIExcluirFornecedor --|> javax.swing.JFrame
+solp.view.UIExcluirFornecedor ..> solp.control.controladorFornecedor
+solp.view.UIExcluirFornecedor ..> solp.model.Fornecedor
+solp.view.UIExcluirFuncionario ..> java.lang.SuppressWarnings
+solp.view.UIExcluirFuncionario ..> java.sql.SQLException
+solp.view.UIExcluirFuncionario ..> java.util.List
+solp.view.UIExcluirFuncionario ..> java.util.logging.Level
+solp.view.UIExcluirFuncionario ..> java.util.logging.Logger
+solp.view.UIExcluirFuncionario --|> javax.swing.JFrame
+solp.view.UIExcluirFuncionario ..> javax.swing.JOptionPane
+solp.view.UIExcluirFuncionario ..> solp.control.controladorFuncionario
+solp.view.UIExcluirFuncionario ..> solp.model.Funcionario
+solp.view.UILogin ..> java.lang.SuppressWarnings
+solp.view.UILogin ..> java.awt.event.KeyEvent
+solp.view.UILogin ..> java.security.NoSuchAlgorithmException
+solp.view.UILogin ..> java.sql.SQLException
+solp.view.UILogin ..> java.util.List
+solp.view.UILogin ..> java.util.logging.Level
+solp.view.UILogin ..> java.util.logging.Logger
+solp.view.UILogin --|> javax.swing.JFrame
+solp.view.UILogin ..> javax.swing.JOptionPane
+solp.view.UILogin ..> solp.control.controladorLogin
+solp.view.UIPrincipal ..> java.lang.SuppressWarnings
+solp.view.UIPrincipal ..> java.sql.SQLException
+solp.view.UIPrincipal ..> java.util.logging.Level
+solp.view.UIPrincipal ..> java.util.logging.Logger
+solp.view.UIPrincipal --|> javax.swing.JFrame
+solp.view.UIPrincipal ..> javax.swing.JOptionPane
+@enduml
