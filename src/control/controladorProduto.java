@@ -6,9 +6,11 @@
 package control;
 
 import dao.ProdutoDAO;
+import dao.MateriaPrimaPorProdutoDAO;
 import java.sql.SQLException;
 import java.util.List;
 import model.Produto;
+import model.MateriaPrimaPorProduto;
 
 /**
  *
@@ -44,6 +46,12 @@ public class controladorProduto {
     
     public static boolean excluir(Produto produto) throws ClassNotFoundException, SQLException{
         ProdutoDAO conn = new ProdutoDAO();
+        MateriaPrimaPorProdutoDAO MateriaPrimaConn = new MateriaPrimaPorProdutoDAO();
+        List<MateriaPrimaPorProduto> listaMaterias = produto.getMateriasPrimas();
+        int n = listaMaterias.size();
+        for(int i=0;i<n;i++){
+            MateriaPrimaConn.excluir(listaMaterias.get(i));
+        }
         return conn.excluir(produto);
     }
 }

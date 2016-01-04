@@ -9,6 +9,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.MateriaPrimaPorProduto;
 
 /**
@@ -37,5 +39,18 @@ public class MateriaPrimaPorProdutoDAO {
         int id = rs.getInt("id");
         stm.close();
         return id;
+    }
+    
+    public boolean excluir(MateriaPrimaPorProduto materia){
+        try {
+            stm = conn.createStatement();
+            String sql = String.format("DELETE FROM materiaprimaporproduto WHERE id=%s", materia.getId());
+            stm.executeUpdate(sql);
+            stm.close();
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(MateriaPrimaPorProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
     }
 }
