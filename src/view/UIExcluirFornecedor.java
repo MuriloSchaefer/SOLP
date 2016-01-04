@@ -198,7 +198,7 @@ public class UIExcluirFornecedor extends javax.swing.JFrame {
     private void comboFornecedorItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboFornecedorItemStateChanged
         try {
             // TODO add your handling code here:
-            listaMateriaPrima = controladorMateriaPrima.consultar(lista.get(comboFornecedor.getSelectedIndex()).getId());
+            listaMateriaPrima = controladorMateriaPrima.consultar(1, lista.get(comboFornecedor.getSelectedIndex()).getId());
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(UIExcluirFornecedor.class.getName()).log(Level.SEVERE, null, ex);
         }
