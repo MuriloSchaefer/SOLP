@@ -61,6 +61,7 @@ public class FornecedorDAO {
         rs = stm.executeQuery(sql);
         rs.next();
         id = rs.getInt("id");
+        stm.close();
         return id;
     }
     
@@ -154,6 +155,7 @@ public class FornecedorDAO {
                     end.setCidade(rsEnd.getString("cidade"));
                     end.setEstado(rsEnd.getString("estado"));
                     EndAux.add(end);
+                    stmEnd.close();
                 }
             }
             aux.setListaEndereco(EndAux);

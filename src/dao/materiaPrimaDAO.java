@@ -40,6 +40,7 @@ public class materiaPrimaDAO {
         rs = stm.executeQuery(sql);
         rs.next();
         int id = rs.getInt("id");
+        stm.close();
         return id;
     }
     
@@ -98,6 +99,8 @@ public class materiaPrimaDAO {
             aux.setFornecedor(FornecedorAux);
             lista.add(aux);
         }
+        stmFornecedor.close();
+        stm.close();
         return lista;
     }    
     
@@ -156,6 +159,8 @@ public class materiaPrimaDAO {
             aux.setFornecedor(FornecedorAux);
             lista.add(aux);
         }
+        stmFornecedor.close();
+        stm.close();
         return lista;
     } 
     
@@ -214,6 +219,8 @@ public class materiaPrimaDAO {
             aux.setFornecedor(FornecedorAux);
             lista.add(aux);
         }
+        stmFornecedor.close();
+        stm.close();
         return lista;
     } 
     
@@ -273,6 +280,8 @@ public class materiaPrimaDAO {
             aux.setFornecedor(FornecedorAux);
             lista.add(aux);
         }
+        stmFornecedor.close();
+        stm.close();
         return lista;
     } 
     

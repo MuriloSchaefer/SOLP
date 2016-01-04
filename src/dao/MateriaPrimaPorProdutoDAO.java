@@ -35,6 +35,7 @@ public class MateriaPrimaPorProdutoDAO {
         rs = stm.executeQuery(sql);
         rs.next();
         int id = rs.getInt("id");
+        stm.close();
         return id;
     }
 }

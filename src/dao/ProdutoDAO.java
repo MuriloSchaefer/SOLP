@@ -54,6 +54,7 @@ public class ProdutoDAO {
         rs = stm.executeQuery(sql);
         rs.next();
         add = rs.getInt("id");
+        stm.close();
         return add;
     }
     
@@ -98,10 +99,12 @@ public class ProdutoDAO {
                 materiaPrima.setQuantidade(rsMateriasPrimas.getDouble("quantidade"));
                 materiaPrima.setTotalAcumulado(rsMateriasPrimas.getDouble("valoracumulado"));
                 listaMateriaPrima.add(materiaPrima);
+                stmMateriaPrima.close();
             }
             produto.setMateriasPrimas(listaMateriaPrima);
             listaProduto.add(produto);
         }
+        stm.close();
         return listaProduto;
     }
     
@@ -146,10 +149,12 @@ public class ProdutoDAO {
                 materiaPrima.setQuantidade(rsMateriasPrimas.getDouble("quantidade"));
                 materiaPrima.setTotalAcumulado(rsMateriasPrimas.getDouble("valoracumulado"));
                 listaMateriaPrima.add(materiaPrima);
+                stmMateriaPrima.close();
             }
             produto.setMateriasPrimas(listaMateriaPrima);
             listaProduto.add(produto);
         }
+        stm.close();
         return listaProduto;
     }
     
@@ -194,10 +199,12 @@ public class ProdutoDAO {
                 materiaPrima.setQuantidade(rsMateriasPrimas.getDouble("quantidade"));
                 materiaPrima.setTotalAcumulado(rsMateriasPrimas.getDouble("valoracumulado"));
                 listaMateriaPrima.add(materiaPrima);
+                stmMateriaPrima.close();
             }
             produto.setMateriasPrimas(listaMateriaPrima);
             listaProduto.add(produto);
         }
+        stm.close();
         return listaProduto;
     }
     
