@@ -3,14 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package solp.view;
+package view;
 
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
-import solp.control.controladorFuncionario;
+import control.controladorFuncionario;
 
 /**
  *
@@ -23,7 +23,7 @@ public class UIConsultarFuncionario extends javax.swing.JFrame {
      */
     public UIConsultarFuncionario() throws ClassNotFoundException, SQLException {
         initComponents();
-        List<solp.model.Funcionario> lista = null;
+        List<model.Funcionario> lista = null;
         lista = controladorFuncionario.consultar(txtNome.getText());
         String[] columnNames = {"Id",
             "Nome",
@@ -126,7 +126,7 @@ public class UIConsultarFuncionario extends javax.swing.JFrame {
     private void txtNomeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomeKeyReleased
         // TODO add your handling code here:
         
-        List<solp.model.Funcionario> lista = null;
+        List<model.Funcionario> lista = null;
         try {
             lista = controladorFuncionario.consultar(txtNome.getText());
         } catch (ClassNotFoundException | SQLException ex) {

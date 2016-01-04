@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package solp.view;
+package view;
 
 import static java.awt.event.KeyEvent.VK_ENTER;
 import java.security.NoSuchAlgorithmException;
@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import solp.control.controladorLogin;
+import control.controladorLogin;
 
 /**
  *
@@ -135,7 +135,7 @@ public class UILogin extends javax.swing.JFrame {
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
         // TODO add your handling code here:
-        List<solp.model.Funcionario> lista = null; //cria uma lista nula de funcionarios
+        List<model.Funcionario> lista = null; //cria uma lista nula de funcionarios
         //--- realiza uma busca no banco contendo aquele login e senha ------------
         // armazena o retorno da busca na lista
         try {
@@ -156,7 +156,7 @@ public class UILogin extends javax.swing.JFrame {
         // TODO add your handling code here:
         if(evt.getKeyCode() == VK_ENTER){
             // TODO add your handling code here:
-            List<solp.model.Funcionario> lista = null;
+            List<model.Funcionario> lista = null;
             try {
                 lista = controladorLogin.validaLogin(txtUsuario.getText(), String.valueOf(txtSenha.getPassword()));
             } catch (ClassNotFoundException | SQLException | NoSuchAlgorithmException ex) {
@@ -174,7 +174,7 @@ public class UILogin extends javax.swing.JFrame {
     private void VK_ENTER(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_VK_ENTER
         if(evt.getKeyCode() == VK_ENTER){
             // TODO add your handling code here:
-            List<solp.model.Funcionario> lista = null;
+            List<model.Funcionario> lista = null;
             try {
                 lista = controladorLogin.validaLogin(txtUsuario.getText(), String.valueOf(txtSenha.getPassword()));
             } catch (ClassNotFoundException | SQLException | NoSuchAlgorithmException ex) {

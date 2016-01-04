@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package solp.control;
+package control;
 
 import dao.EnderecoDAO;
 import dao.FornecedorDAO;
@@ -11,8 +11,8 @@ import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.util.List;
 import javax.swing.JOptionPane;
-import solp.model.Endereco;
-import solp.model.Fornecedor;
+import model.Endereco;
+import model.Fornecedor;
 
 /**
  *

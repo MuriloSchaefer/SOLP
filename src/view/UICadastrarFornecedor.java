@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package solp.view;
+package view;
 
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
@@ -13,9 +13,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import solp.control.controladorFornecedor;
-import solp.model.Fornecedor;
-import solp.model.Endereco;
+import control.controladorFornecedor;
+import model.Fornecedor;
+import model.Endereco;
 
 /**
  *

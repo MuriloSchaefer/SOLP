@@ -3,14 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package solp.view;
+package view;
 
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
-import solp.control.controladorFornecedor;
+import control.controladorFornecedor;
 
 /**
  *
@@ -23,7 +23,7 @@ public class UIConsultarFornecedor extends javax.swing.JFrame {
      */
     public UIConsultarFornecedor() throws ClassNotFoundException, SQLException {
         initComponents();
-        List<solp.model.Fornecedor> lista = null; //lista de fornecedores
+        List<model.Fornecedor> lista = null; //lista de fornecedores
         lista = controladorFornecedor.consultar(txtNomeFantasia.getText(), txtRazaoSocial.getText()); //faz uma busca nos fornecedores pelo nome fantasia e razão social
         
         //atualiza tabela ---------------------------------------
@@ -141,7 +141,7 @@ public class UIConsultarFornecedor extends javax.swing.JFrame {
          * Quando uma tecla é precionada, ou solta-la é disparada a ação para uma nova consulta ao banco
          * atualizando a tabela contendo os fornecedores com o nome fantasia desejado.
          */
-        List<solp.model.Fornecedor> lista = null;
+        List<model.Fornecedor> lista = null;
         try {
             lista = controladorFornecedor.consultar(txtNomeFantasia.getText(), txtRazaoSocial.getText());
         } catch (ClassNotFoundException | SQLException ex) {
@@ -173,7 +173,7 @@ public class UIConsultarFornecedor extends javax.swing.JFrame {
          * Quando uma tecla é precionada, ou solta-la é disparada a ação para uma nova consulta ao banco
          * atualizando a tabela contendo os fornecedores com a razão social desejado.
          */
-        List<solp.model.Fornecedor> lista = null;
+        List<model.Fornecedor> lista = null;
         try {
             lista = controladorFornecedor.consultar(txtNomeFantasia.getText(), txtRazaoSocial.getText());
         } catch (ClassNotFoundException | SQLException ex) {

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package solp.view;
+package view;
 
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -22,7 +22,7 @@ public class UIPrincipal extends javax.swing.JFrame {
     public UIPrincipal() {
         initComponents();
     }
-    public UIPrincipal(solp.model.Funcionario funcionario) {
+    public UIPrincipal(model.Funcionario funcionario) {
         initComponents();
         if(funcionario.getPermissoes() == 1){
             Menu.getMenu(1).setEnabled(true);

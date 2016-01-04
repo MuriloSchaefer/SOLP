@@ -3,34 +3,34 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package solp.view;
+package view;
 
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import solp.control.controladorMateriaPrima;
-import solp.control.controladorProduto;
-import solp.model.Produto;
+import control.controladorMateriaPrima;
+import model.MateriaPrima;
 
 /**
  *
  * @author murilo
  */
-public class UIExcluirProduto extends javax.swing.JFrame {
+public class UIExcluirMateriaPrima extends javax.swing.JFrame {
 
     /**
-     * Creates new form UIExcluirProduto
+     * Creates new form UIExcluirMateriaPrima
      */
-    List<Produto> lista;
-    public UIExcluirProduto() throws ClassNotFoundException, SQLException {
+    List<MateriaPrima> listaMateriaPrima;
+    public UIExcluirMateriaPrima() throws ClassNotFoundException, SQLException {
         initComponents();
-        lista = controladorProduto.consultar();
-        int n = lista.size();
+        listaMateriaPrima = controladorMateriaPrima.consultar();
+        int n = listaMateriaPrima.size();
         for(int i=0; i<n; i++){
-            comboProduto.addItem(lista.get(i).getNome());
+            comboMateriaPrima.addItem(listaMateriaPrima.get(i).getNome());
         }
+        
     }
 
     /**
@@ -43,20 +43,20 @@ public class UIExcluirProduto extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        comboProduto = new javax.swing.JComboBox();
+        comboMateriaPrima = new javax.swing.JComboBox();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblProdutos = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Excluir Produto");
+        setTitle("Excluir Matéria Prima");
 
-        jLabel1.setText("Produto:");
+        jLabel1.setText("Nome:");
 
-        jLabel2.setText("Pedidos Relacionados a este produto:");
+        jLabel2.setText("Produtos vinculados a esta matéria prima:");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblProdutos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -67,7 +67,7 @@ public class UIExcluirProduto extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblProdutos);
 
         jButton1.setText("Excluir");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -85,31 +85,33 @@ public class UIExcluirProduto extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addGap(3, 3, 3)
-                        .addComponent(comboProduto, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(comboMateriaPrima, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(jLabel2)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 481, Short.MAX_VALUE))
+                        .addGap(0, 186, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
+                .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(comboProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(comboMateriaPrima, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(27, 27, 27)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -118,21 +120,21 @@ public class UIExcluirProduto extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        Produto produto = lista.get(comboProduto.getSelectedIndex());
-        int op = JOptionPane.showConfirmDialog(rootPane, "Tem certeza que deseja excluir o produto "+ produto.getNome()+"?");
+        MateriaPrima materiaPrima = listaMateriaPrima.get(comboMateriaPrima.getSelectedIndex());
+        int op = JOptionPane.showConfirmDialog(rootPane, "Tem certeza que deseja excluir a matéria prima "+ materiaPrima.getNome()+"?");
         if(op == 0){
             boolean valida = false;
             try {
-                valida = controladorProduto.excluir(produto);
+                valida = controladorMateriaPrima.excluir(materiaPrima);
             } catch (ClassNotFoundException | SQLException ex) {
-                Logger.getLogger(UIExcluirProduto.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(UIExcluirMateriaPrima.class.getName()).log(Level.SEVERE, null, ex);
             }
             if (valida){
-                JOptionPane.showMessageDialog(rootPane, "Produto excluido com sucesso!");
+                JOptionPane.showMessageDialog(rootPane, "Matéria Prima excluida com sucesso!");
                 this.dispose();
             }else{
 
-                JOptionPane.showMessageDialog(rootPane, "Produto não excluido!");
+                JOptionPane.showMessageDialog(rootPane, "Matéria Prima não excluida!");
             }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -154,13 +156,13 @@ public class UIExcluirProduto extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(UIExcluirProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UIExcluirMateriaPrima.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(UIExcluirProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UIExcluirMateriaPrima.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(UIExcluirProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UIExcluirMateriaPrima.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(UIExcluirProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UIExcluirMateriaPrima.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -168,20 +170,22 @@ public class UIExcluirProduto extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new UIExcluirProduto().setVisible(true);
-                } catch (ClassNotFoundException | SQLException ex) {
-                    Logger.getLogger(UIExcluirProduto.class.getName()).log(Level.SEVERE, null, ex);
+                    new UIExcluirMateriaPrima().setVisible(true);
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(UIExcluirMateriaPrima.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (SQLException ex) {
+                    Logger.getLogger(UIExcluirMateriaPrima.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox comboProduto;
+    private javax.swing.JComboBox comboMateriaPrima;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tblProdutos;
     // End of variables declaration//GEN-END:variables
 }

@@ -13,9 +13,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import solp.model.Endereco;
-import solp.model.Fornecedor;
-import solp.model.MateriaPrima;
+import model.Endereco;
+import model.Fornecedor;
+import model.MateriaPrima;
 
 /**
  *

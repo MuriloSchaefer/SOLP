@@ -3,15 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package solp.control;
+package control;
 
-import solp.model.Funcionario;
+import model.Funcionario;
 import dao.FuncionarioDAO;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.util.List;
 import javax.swing.JOptionPane;
-import solp.model.Endereco;
+import model.Endereco;
 
 /**
  *

@@ -13,10 +13,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import solp.control.controladorMateriaPrima;
-import solp.model.MateriaPrima;
-import solp.model.MateriaPrimaPorProduto;
-import solp.model.Produto;
+import control.controladorMateriaPrima;
+import model.MateriaPrima;
+import model.MateriaPrimaPorProduto;
+import model.Produto;
 
 /**
  *

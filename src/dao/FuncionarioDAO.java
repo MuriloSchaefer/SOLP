@@ -17,8 +17,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import solp.model.Endereco;
-import solp.model.Funcionario;
+import model.Endereco;
+import model.Funcionario;
 
 /**
  *

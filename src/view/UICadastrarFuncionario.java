@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package solp.view;
+package view;
 
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
@@ -11,10 +11,10 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import solp.control.controladorEndereco;
-import solp.control.controladorFuncionario;
-import solp.model.Funcionario;
-import solp.model.Endereco;
+import control.controladorEndereco;
+import control.controladorFuncionario;
+import model.Funcionario;
+import model.Endereco;
 
 /**
  *
@@ -23,7 +23,7 @@ import solp.model.Endereco;
 public class UICadastrarFuncionario extends javax.swing.JFrame {
     
     private boolean CadEnd = false; // Serve para controlar se já existe o endereco cadastrado ou não
-    List<solp.model.Endereco> lista = null; //lista de enderecos
+    List<model.Endereco> lista = null; //lista de enderecos
     /**
      * Creates new form UICadastrarFuncionario
      * @throws java.lang.ClassNotFoundException

@@ -3,30 +3,28 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package solp.model;
-
-import java.util.List;
+package model;
 
 /**
  *
  * @author murilo
  */
-public class Produto {
+public class MateriaPrima {
     private Integer id;
     private String nome;
     private String descricao;
-    private List<MateriaPrimaPorProduto> materiasPrimas;
-    private double total;
+    private Fornecedor fornecedor;
+    private String und;
+    private double valorUnd;
 
-    public Produto() {
-    }
-
-    public Produto(Integer id, String nome, String descricao, List<MateriaPrimaPorProduto> materiasPrimas, double total) {
+    public MateriaPrima(Integer id, String nome, String descricao, Fornecedor fornecedor) {
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;
-        this.materiasPrimas = materiasPrimas;
-        this.total = total;
+        this.fornecedor = fornecedor;
+    }
+
+    public MateriaPrima() {
     }
 
     public Integer getId() {
@@ -41,12 +39,8 @@ public class Produto {
         return descricao;
     }
 
-    public List<MateriaPrimaPorProduto> getMateriasPrimas() {
-        return materiasPrimas;
-    }
-
-    public double getTotal() {
-        return total;
+    public Fornecedor getFornecedor() {
+        return fornecedor;
     }
 
     public void setId(Integer id) {
@@ -61,12 +55,25 @@ public class Produto {
         this.descricao = descricao;
     }
 
-    public void setMateriasPrimas(List<MateriaPrimaPorProduto> materiasPrimas) {
-        this.materiasPrimas = materiasPrimas;
+    public void setFornecedor(Fornecedor fornecedor) {
+        this.fornecedor = fornecedor;
     }
 
-    public void setTotal(double total) {
-        this.total = total;
+    public void setUnd(String und) {
+        this.und = und;
     }
+
+    public void setValorUnd(double valorUnd) {
+        this.valorUnd = valorUnd;
+    }
+
+    public String getUnd() {
+        return und;
+    }
+
+    public double getValorUnd() {
+        return valorUnd;
+    }
+    
     
 }

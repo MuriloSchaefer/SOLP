@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package solp.view;
+package view;
 
 import java.sql.SQLException;
 import java.text.DecimalFormat;
@@ -15,11 +15,11 @@ import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.table.DefaultTableModel;
-import solp.control.controladorMateriaPrima;
-import solp.control.controladorProduto;
-import solp.model.MateriaPrima;
-import solp.model.MateriaPrimaPorProduto;
-import solp.model.Produto;
+import control.controladorMateriaPrima;
+import control.controladorProduto;
+import model.MateriaPrima;
+import model.MateriaPrimaPorProduto;
+import model.Produto;
 
 /**
  *

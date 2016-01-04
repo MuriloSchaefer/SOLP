@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package solp.view;
+package view;
 import static java.awt.event.KeyEvent.VK_ESCAPE;
 import java.sql.SQLException;
 import java.util.List;
@@ -11,10 +11,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import solp.control.controladorFornecedor;
-import solp.control.controladorMateriaPrima;
-import solp.model.Fornecedor;
-import solp.model.MateriaPrima;
+import control.controladorFornecedor;
+import control.controladorMateriaPrima;
+import model.Fornecedor;
+import model.MateriaPrima;
 
 /**
  *

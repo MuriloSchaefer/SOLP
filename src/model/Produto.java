@@ -3,28 +3,30 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package solp.model;
+package model;
+
+import java.util.List;
 
 /**
  *
  * @author murilo
  */
-public class MateriaPrima {
+public class Produto {
     private Integer id;
     private String nome;
     private String descricao;
-    private Fornecedor fornecedor;
-    private String und;
-    private double valorUnd;
+    private List<MateriaPrimaPorProduto> materiasPrimas;
+    private double total;
 
-    public MateriaPrima(Integer id, String nome, String descricao, Fornecedor fornecedor) {
+    public Produto() {
+    }
+
+    public Produto(Integer id, String nome, String descricao, List<MateriaPrimaPorProduto> materiasPrimas, double total) {
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;
-        this.fornecedor = fornecedor;
-    }
-
-    public MateriaPrima() {
+        this.materiasPrimas = materiasPrimas;
+        this.total = total;
     }
 
     public Integer getId() {
@@ -39,8 +41,12 @@ public class MateriaPrima {
         return descricao;
     }
 
-    public Fornecedor getFornecedor() {
-        return fornecedor;
+    public List<MateriaPrimaPorProduto> getMateriasPrimas() {
+        return materiasPrimas;
+    }
+
+    public double getTotal() {
+        return total;
     }
 
     public void setId(Integer id) {
@@ -55,25 +61,12 @@ public class MateriaPrima {
         this.descricao = descricao;
     }
 
-    public void setFornecedor(Fornecedor fornecedor) {
-        this.fornecedor = fornecedor;
+    public void setMateriasPrimas(List<MateriaPrimaPorProduto> materiasPrimas) {
+        this.materiasPrimas = materiasPrimas;
     }
 
-    public void setUnd(String und) {
-        this.und = und;
+    public void setTotal(double total) {
+        this.total = total;
     }
-
-    public void setValorUnd(double valorUnd) {
-        this.valorUnd = valorUnd;
-    }
-
-    public String getUnd() {
-        return und;
-    }
-
-    public double getValorUnd() {
-        return valorUnd;
-    }
-    
     
 }

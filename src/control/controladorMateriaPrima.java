@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package solp.control;
+package control;
 
 import dao.materiaPrimaDAO;
 import java.sql.SQLException;
 import java.util.List;
-import solp.model.MateriaPrima;
+import model.MateriaPrima;
 
 /**
  *
