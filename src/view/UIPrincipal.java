@@ -485,6 +485,11 @@ public class UIPrincipal extends javax.swing.JFrame {
         jMenu6.setText("Cliente");
 
         jMenuItem8.setText("Cadastrar");
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem8ActionPerformed(evt);
+            }
+        });
         jMenu6.add(jMenuItem8);
 
         jMenuItem9.setText("Consultar");
@@ -575,6 +580,7 @@ public class UIPrincipal extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        new UICadastrarCliente().setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
@@ -728,6 +734,11 @@ public class UIPrincipal extends javax.swing.JFrame {
             Logger.getLogger(UIPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jMenuItem16ActionPerformed
+
+    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+        // TODO add your handling code here:
+        new UICadastrarCliente().setVisible(true);
+    }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     /**
      * @param args the command line arguments
