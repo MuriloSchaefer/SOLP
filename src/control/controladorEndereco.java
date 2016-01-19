@@ -20,9 +20,10 @@ import model.Endereco;
  */
 public class controladorEndereco {
     
-    public static boolean add(Endereco endereco) throws ClassNotFoundException, NoSuchAlgorithmException{
+    public static boolean add(Endereco endereco) throws ClassNotFoundException, NoSuchAlgorithmException, SQLException{
         EnderecoDAO con = new EnderecoDAO(); //abre uma nova conexão com o banco
         int add = con.add(endereco); //faz a inserção do endereço
+        con.destroy();
         return add >=0; // retorna true caso o add >=0; add é o id que foi inserido no banco, é -1 caso de erro
     }
     
@@ -30,7 +31,7 @@ public class controladorEndereco {
         EnderecoDAO con = new EnderecoDAO(); //abre uma nova conexão com o banco
         List<Endereco> rs; // cria uma lista de enderecos
         rs = con.consultar(); //preenche a lista de enderecos com o resultado da consulta ao banco
-        
+        con.destroy();
         return rs; // retorna a lista preenchida
     }
 }

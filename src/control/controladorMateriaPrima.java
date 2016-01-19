@@ -20,6 +20,7 @@ public class controladorMateriaPrima {
         int add;
         materiaPrimaDAO conn = new materiaPrimaDAO();
         add = conn.add(materiaPrima);
+        conn.destroy();
         return add >=0;
     }
     
@@ -27,6 +28,7 @@ public class controladorMateriaPrima {
         List<MateriaPrima> lista;
         materiaPrimaDAO conn = new materiaPrimaDAO();
         lista = conn.consultar();
+        conn.destroy();
         return lista;
     }
     
@@ -34,6 +36,7 @@ public class controladorMateriaPrima {
         List<MateriaPrima> lista;
         materiaPrimaDAO conn = new materiaPrimaDAO();
         lista = conn.consultar(id);
+        conn.destroy();
         return lista;
     }
     
@@ -41,16 +44,20 @@ public class controladorMateriaPrima {
         List<MateriaPrima> lista;
         materiaPrimaDAO conn = new materiaPrimaDAO();
         lista = conn.consultar(id, fornecedor);
+        conn.destroy();
         return lista;
     }
     public static List<MateriaPrima> consultar(String nome) throws ClassNotFoundException, SQLException{
         List<MateriaPrima> lista;
         materiaPrimaDAO conn = new materiaPrimaDAO();
         lista = conn.consultar(nome);
+        conn.destroy();
         return lista;
     }
     public static boolean excluir(MateriaPrima materiaPrima) throws ClassNotFoundException, SQLException{
         materiaPrimaDAO conn = new materiaPrimaDAO();
-        return conn.excluir(materiaPrima);
+        boolean excluir = conn.excluir(materiaPrima);
+        conn.destroy();
+        return excluir;
     }
 }

@@ -35,6 +35,7 @@ public class controladorLogin {
         System.out.println(senhaMD5); // imprime no console a senha criptografada (será retirado depois)
         List<Funcionario> rs; // cria uma lista de funcionarios 
         rs = con.consultar(usuario, senhaMD5); //preenche a lista com o resultado da busca, com aquele usuario e com aquela senha
+        con.destroy();
         return rs; //retorna lista com os usuarios
    }
    

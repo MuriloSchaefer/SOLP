@@ -33,7 +33,7 @@ public class controladorFuncionario {
             }                
         }
         add = con.add(endereco, funcionario); //add recebe o id de inserção no banco; add = -1 no caso de erro
-        
+        con.destroy();
         return add >= 0; // retorna true caso add >= 0 ou false se add < 0
     }
     
@@ -52,23 +52,27 @@ public class controladorFuncionario {
             }                
         }
         add = con.add(funcionario);
-        
+        con.destroy();
         return add >= 0;
     }
     public static List<Funcionario> consultar() throws ClassNotFoundException, SQLException{
         FuncionarioDAO con = new FuncionarioDAO(); 
         List<Funcionario> rs;
         rs = con.consultar();
+        con.destroy();
         return rs;
     }
     public static List<Funcionario> consultar(String nome) throws ClassNotFoundException, SQLException{
         FuncionarioDAO con = new FuncionarioDAO(); 
         List<Funcionario> rs;
         rs = con.consultar(nome);
+        con.destroy();
         return rs;
     }
-    public static boolean excluir(Funcionario funcionario) throws ClassNotFoundException{
+    public static boolean excluir(Funcionario funcionario) throws ClassNotFoundException, SQLException{
         FuncionarioDAO con = new FuncionarioDAO(); 
-        return(con.excluir(funcionario));
+        boolean excluir = con.excluir(funcionario);
+        con.destroy();
+        return(excluir);
     }
 }

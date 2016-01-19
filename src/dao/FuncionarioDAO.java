@@ -36,6 +36,9 @@ public class FuncionarioDAO {
         return String.format("%32x", hash);
     }
     
+    public void destroy() throws SQLException{
+        conn.close();
+    }
     
     public FuncionarioDAO() throws ClassNotFoundException{
         try {
@@ -56,6 +59,7 @@ public class FuncionarioDAO {
             rs.next();
             int id_funcionario = rs.getInt("id");
             stm.close();
+            //conn.close();
             return id_funcionario;
         } catch (SQLException ex) {
             Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -71,6 +75,7 @@ public class FuncionarioDAO {
             rs.next();
             int id_funcionario = rs.getInt("id");
             stm.close();
+            //conn.close();
             return id_funcionario;
         } catch (SQLException ex) {
             Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -83,6 +88,7 @@ public class FuncionarioDAO {
             String sql = String.format("DELETE FROM funcionario WHERE id=%s", funcionario.getId());
             stm.executeUpdate(sql);
             stm.close();
+            //conn.close();
             return true;
         } catch (SQLException ex) {
             Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -116,6 +122,7 @@ public class FuncionarioDAO {
         }
         
         stm.close();
+        //conn.close();
         return lista;   
     }
     public List<Funcionario> consultar(String nome) throws SQLException{
@@ -143,6 +150,7 @@ public class FuncionarioDAO {
             lista.add(aux);
         }
         stm.close();
+        //conn.close();
         return lista;   
     }
     
@@ -170,6 +178,7 @@ public class FuncionarioDAO {
         }
         
         stm.close();
+        //conn.close();
         return lista;   
     }
 }

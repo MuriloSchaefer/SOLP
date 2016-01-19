@@ -33,6 +33,9 @@ public class ProdutoDAO {
            // Logger.getLogger(Funcion.class.getName()).log(Level.SEVERE, null, ex);
         } 
     }
+    public void destroy() throws SQLException{
+        conn.close();
+    }
     
     public int add(Produto produto) throws ClassNotFoundException, SQLException{
         MateriaPrimaPorProdutoDAO MateriaPrimaConn = new MateriaPrimaPorProdutoDAO();
@@ -55,6 +58,7 @@ public class ProdutoDAO {
         rs.next();
         add = rs.getInt("id");
         stm.close();
+        //conn.close();
         return add;
     }
     
@@ -105,6 +109,7 @@ public class ProdutoDAO {
             listaProduto.add(produto);
         }
         stm.close();
+        //conn.close();
         return listaProduto;
     }
     
@@ -155,6 +160,7 @@ public class ProdutoDAO {
             listaProduto.add(produto);
         }
         stm.close();
+        //conn.close();
         return listaProduto;
     }
     
@@ -205,6 +211,7 @@ public class ProdutoDAO {
             listaProduto.add(produto);
         }
         stm.close();
+        //conn.close();
         return listaProduto;
     }
     
@@ -214,6 +221,7 @@ public class ProdutoDAO {
             String sql = String.format("DELETE FROM produto WHERE id=%s", produto.getId());
             stm.executeUpdate(sql);
             stm.close();
+            //conn.close();
             return true;
         } catch (SQLException ex) {
             Logger.getLogger(EnderecoDAO.class.getName()).log(Level.SEVERE, null, ex);

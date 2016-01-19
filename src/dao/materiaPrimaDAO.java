@@ -32,6 +32,9 @@ public class materiaPrimaDAO {
            // Logger.getLogger(Funcion.class.getName()).log(Level.SEVERE, null, ex);
         } 
     }
+    public void destroy() throws SQLException{
+        conn.close();
+    }
     
     public int add(MateriaPrima materiaPrima) throws SQLException{
         ResultSet rs;
@@ -41,6 +44,7 @@ public class materiaPrimaDAO {
         rs.next();
         int id = rs.getInt("id");
         stm.close();
+        //conn.close();
         return id;
     }
     
@@ -101,6 +105,7 @@ public class materiaPrimaDAO {
         }
         stmFornecedor.close();
         stm.close();
+        //conn.close();
         return lista;
     }    
     
@@ -161,6 +166,7 @@ public class materiaPrimaDAO {
         }
         stmFornecedor.close();
         stm.close();
+        //conn.close();
         return lista;
     } 
     
@@ -221,6 +227,7 @@ public class materiaPrimaDAO {
         }
         stmFornecedor.close();
         stm.close();
+        //conn.close();
         return lista;
     } 
     
@@ -282,6 +289,7 @@ public class materiaPrimaDAO {
         }
         stmFornecedor.close();
         stm.close();
+        //conn.close();
         return lista;
     } 
     
@@ -291,6 +299,7 @@ public class materiaPrimaDAO {
             String sql = String.format("DELETE FROM materiaprima WHERE id=%s", materiaPrima.getId());
             stm.executeUpdate(sql);
             stm.close();
+            //conn.close();
             return true;
         } catch (SQLException ex) {
             Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);

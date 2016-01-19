@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package dao;
-
+    
 import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -31,6 +31,9 @@ public class EnderecoDAO {
         } 
     }
     
+    public void destroy() throws SQLException{
+        conn.close();
+    }
     //Inserção de um novo endereco no banco
     public int add(Endereco endereco) throws NoSuchAlgorithmException{
         try {
@@ -41,6 +44,7 @@ public class EnderecoDAO {
             rs.next(); //avança o ponteiro de rs, é sempre necessário fazer isto
             int id_endereco = rs.getInt("id"); //pega o id retornado pelo sql
             stm.close(); //fecha o statement
+            ;
             return id_endereco;//retorna o id
         } catch (SQLException ex) {
             Logger.getLogger(EnderecoDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -73,6 +77,7 @@ public class EnderecoDAO {
             lista.add(aux); //adiciona o endereco a lista de enderecos
         }
         stm.close(); //fecha o statement
+        ;
         return lista;   // retorna a lista
     } 
     
@@ -82,6 +87,7 @@ public class EnderecoDAO {
             String sql = String.format("DELETE FROM endereco WHERE id=%s", endereco.getId());
             stm.executeUpdate(sql);
             stm.close();
+            ;
             return true;
         } catch (SQLException ex) {
             Logger.getLogger(EnderecoDAO.class.getName()).log(Level.SEVERE, null, ex);

@@ -35,6 +35,10 @@ public class FornecedorDAO {
         } 
     }
     
+    public void destroy() throws SQLException{
+        conn.close();
+    }
+    
     public int add(Fornecedor fornecedor) throws ClassNotFoundException, NoSuchAlgorithmException, SQLException{
         EnderecoDAO Endconn = new EnderecoDAO();
         List<Integer> ids = new ArrayList<>();
@@ -62,6 +66,7 @@ public class FornecedorDAO {
         rs.next();
         id = rs.getInt("id");
         stm.close();
+        //conn.close();
         return id;
     }
     
@@ -111,6 +116,7 @@ public class FornecedorDAO {
             lista.add(aux);
         }
         stm.close();
+        //conn.close();
         return lista;  
     }
     
@@ -162,6 +168,7 @@ public class FornecedorDAO {
             lista.add(aux);
         }
         stm.close();
+        //conn.close();
         return lista;   
     }
     
@@ -171,6 +178,7 @@ public class FornecedorDAO {
             String sql = String.format("DELETE FROM fornecedor WHERE id=%s", fornecedor.getId());
             stm.executeUpdate(sql);
             stm.close();
+            //conn.close();
             return true;
         } catch (SQLException ex) {
             Logger.getLogger(FornecedorDAO.class.getName()).log(Level.SEVERE, null, ex);

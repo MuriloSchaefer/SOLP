@@ -34,6 +34,7 @@ public class controladorFornecedor {
         //---------------------------
         int add;
         add = con.add(fornecedor); // add = id de inserção no banco; add é -1 no caso de falha
+        con.destroy();
         return add >=0; //retorna true caso o add >=0 e false caso seja -1
     }
     
@@ -42,6 +43,7 @@ public class controladorFornecedor {
         FornecedorDAO con = new FornecedorDAO(); //cria uma nova conexão com o banco de dados
         List<Fornecedor> rs; //cria uma lista de fornecedores
         rs = con.consultar(nomeFantasia, razaoSocial); //preenche a lista com o resultado da consulta
+        con.destroy();
         return rs; // retorna a lista
     }
     
@@ -50,6 +52,7 @@ public class controladorFornecedor {
         FornecedorDAO con = new FornecedorDAO(); //cria uma nova conexão com o banco de dados
         List<Fornecedor> rs; // cria uma lista de fornecedores
         rs = con.consultar(); // preenche a lista com o resultado da consulta
+        con.destroy();
         return rs; // retorna a lista
     }
     
@@ -61,6 +64,8 @@ public class controladorFornecedor {
         for(int i=0; i<n; i++){ // percorre a lista
             EndConn.excluir(enderecos.get(i)); //exclui do banco o endereço na posição i da lista
         }
+        EndConn.destroy();
+        FornecedorConn.destroy();
         return(FornecedorConn.excluir(fornecedor)); //exclui o fornecedor e então retorna true ou false;
     }
 }

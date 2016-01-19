@@ -22,12 +22,14 @@ public class controladorProduto {
         ProdutoDAO conn = new ProdutoDAO();
         int id;
         id = conn.add(produto);
+        conn.destroy();
         return id >= 0;
     }
     
     public static List<Produto> consultar() throws ClassNotFoundException, SQLException{
         ProdutoDAO conn = new ProdutoDAO();
         List<Produto> lista = conn.consultar();
+        conn.destroy();
         return lista;
     }
     
@@ -35,12 +37,14 @@ public class controladorProduto {
     public static List<Produto> consultar(int id) throws ClassNotFoundException, SQLException{
         ProdutoDAO conn = new ProdutoDAO();
         List<Produto> lista = conn.consultar(id);
+        conn.destroy();
         return lista;
     }
     
     public static List<Produto> consultar(String nome) throws ClassNotFoundException, SQLException{
         ProdutoDAO conn = new ProdutoDAO();
         List<Produto> lista = conn.consultar(nome);
+        conn.destroy();
         return lista;
     }
     
@@ -52,6 +56,8 @@ public class controladorProduto {
         for(int i=0;i<n;i++){
             MateriaPrimaConn.excluir(listaMaterias.get(i));
         }
-        return conn.excluir(produto);
+        boolean excluir = conn.excluir(produto);
+        conn.destroy();
+        return excluir;
     }
 }

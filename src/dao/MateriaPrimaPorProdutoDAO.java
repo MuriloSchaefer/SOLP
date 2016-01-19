@@ -28,6 +28,9 @@ public class MateriaPrimaPorProdutoDAO {
            // Logger.getLogger(Funcion.class.getName()).log(Level.SEVERE, null, ex);
         } 
     }
+    public void destroy() throws SQLException{
+        conn.close();
+    }
     
     public int add(MateriaPrimaPorProduto materiaprima) throws SQLException{
         stm = conn.createStatement();
@@ -38,6 +41,7 @@ public class MateriaPrimaPorProdutoDAO {
         rs.next();
         int id = rs.getInt("id");
         stm.close();
+        //conn.close();
         return id;
     }
     
@@ -47,6 +51,7 @@ public class MateriaPrimaPorProdutoDAO {
             String sql = String.format("DELETE FROM materiaprimaporproduto WHERE id=%s", materia.getId());
             stm.executeUpdate(sql);
             stm.close();
+            //conn.close();
             return true;
         } catch (SQLException ex) {
             Logger.getLogger(MateriaPrimaPorProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
