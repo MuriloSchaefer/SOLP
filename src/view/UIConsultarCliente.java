@@ -5,21 +5,21 @@
  */
 package view;
 
+import control.controladorCliente;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
-import control.controladorFornecedor;
 
 /**
  *
  * @author murilo
  */
-public class UIConsultarFornecedor extends javax.swing.JFrame {
+public class UIConsultarCliente extends javax.swing.JFrame {
 
     /**
-     * Creates new form UIConsultarFornecedor
+     * Creates new form UIConsultaCliente
      */
     
     public class MyTableModel extends DefaultTableModel {
@@ -33,32 +33,32 @@ public class UIConsultarFornecedor extends javax.swing.JFrame {
        }
     }
     
-    public UIConsultarFornecedor() throws ClassNotFoundException, SQLException {
+    public UIConsultarCliente() {
         initComponents();
-        List<model.Fornecedor> lista = null; //lista de fornecedores
-        lista = controladorFornecedor.consultar(txtNomeFantasia.getText(), txtRazaoSocial.getText()); //faz uma busca nos fornecedores pelo nome fantasia e razão social
         
-        //atualiza tabela ---------------------------------------
+        List<model.Cliente> lista = null;
+        try {
+            lista = controladorCliente.consultar(txtNomeFantasia.getText(), txtRazaoSocial.getText());
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(UIConsultarCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
         String[] columnNames = {"Id",
             "CNPJ",
             "Razão Social",
             "Nome Fantasia"};
         Object[][] data = null;
         MyTableModel dtm = new MyTableModel(data, columnNames);
-        
-         
+
         int n = lista.size();
         for(int i=0; i<n; i++){
-            Object[] linha = {lista.get(i).getId().toString(), 
-                              lista.get(i).getCnpj(), 
-                              lista.get(i).getRazaoSocial(),
-                              lista.get(i).getNomeFantasia()};
+            Object[] linha = {lista.get(i).getId().toString(),
+                lista.get(i).getCnpj(),
+                lista.get(i).getRazaoSocial(),
+                lista.get(i).getNomeFantasia()};
             dtm.addRow(linha);
         }
-        
-        
-        tblFornecedor.setModel(dtm);
-        //--------------------------------------------------------
+
+        tblCliente.setModel(dtm);
     }
 
     /**
@@ -72,13 +72,13 @@ public class UIConsultarFornecedor extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         txtNomeFantasia = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tblFornecedor = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         txtRazaoSocial = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblCliente = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("consultar Fornecedor");
+        setTitle("Consultar Cliente");
 
         jLabel1.setText("Nome Fantasia:");
 
@@ -88,7 +88,15 @@ public class UIConsultarFornecedor extends javax.swing.JFrame {
             }
         });
 
-        tblFornecedor.setModel(new javax.swing.table.DefaultTableModel(
+        jLabel2.setText("Razão Social:");
+
+        txtRazaoSocial.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtRazaoSocialKeyReleased(evt);
+            }
+        });
+
+        tblCliente.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -99,15 +107,7 @@ public class UIConsultarFornecedor extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(tblFornecedor);
-
-        jLabel2.setText("Razão Social:");
-
-        txtRazaoSocial.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtRazaoSocialKeyReleased(evt);
-            }
-        });
+        jScrollPane1.setViewportView(tblCliente);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -116,7 +116,7 @@ public class UIConsultarFornecedor extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 693, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 619, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel2)
@@ -139,8 +139,8 @@ public class UIConsultarFornecedor extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(txtRazaoSocial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(33, 33, 33)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -150,14 +150,14 @@ public class UIConsultarFornecedor extends javax.swing.JFrame {
     private void txtNomeFantasiaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomeFantasiaKeyReleased
         // TODO add your handling code here:
         /**
-         * Quando uma tecla é precionada, ou solta-la é disparada a ação para uma nova consulta ao banco
-         * atualizando a tabela contendo os fornecedores com o nome fantasia desejado.
-         */
-        List<model.Fornecedor> lista = null;
+        * Quando uma tecla é precionada, ou solta-la é disparada a ação para uma nova consulta ao banco
+        * atualizando a tabela contendo os clientees com o nome fantasia desejado.
+        */
+        List<model.Cliente> lista = null;
         try {
-            lista = controladorFornecedor.consultar(txtNomeFantasia.getText(), txtRazaoSocial.getText());
+            lista = controladorCliente.consultar(txtNomeFantasia.getText(), txtRazaoSocial.getText());
         } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(UIConsultarFornecedor.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UIConsultarCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
         String[] columnNames = {"Id",
             "CNPJ",
@@ -165,31 +165,30 @@ public class UIConsultarFornecedor extends javax.swing.JFrame {
             "Nome Fantasia"};
         Object[][] data = null;
         MyTableModel dtm = new MyTableModel(data, columnNames);
-         
+
         int n = lista.size();
         for(int i=0; i<n; i++){
-            Object[] linha = {lista.get(i).getId().toString(), 
-                              lista.get(i).getCnpj(), 
-                              lista.get(i).getRazaoSocial(),
-                              lista.get(i).getNomeFantasia()};
+            Object[] linha = {lista.get(i).getId().toString(),
+                lista.get(i).getCnpj(),
+                lista.get(i).getRazaoSocial(),
+                lista.get(i).getNomeFantasia()};
             dtm.addRow(linha);
         }
-        
-        
-        tblFornecedor.setModel(dtm);
+
+        tblCliente.setModel(dtm);
     }//GEN-LAST:event_txtNomeFantasiaKeyReleased
 
     private void txtRazaoSocialKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRazaoSocialKeyReleased
         // TODO add your handling code here:
         /**
-         * Quando uma tecla é precionada, ou solta-la é disparada a ação para uma nova consulta ao banco
-         * atualizando a tabela contendo os fornecedores com a razão social desejado.
-         */
-        List<model.Fornecedor> lista = null;
+        * Quando uma tecla é precionada, ou solta-la é disparada a ação para uma nova consulta ao banco
+        * atualizando a tabela contendo os clientees com a razão social desejado.
+        */
+        List<model.Cliente> lista = null;
         try {
-            lista = controladorFornecedor.consultar(txtNomeFantasia.getText(), txtRazaoSocial.getText());
+            lista = controladorCliente.consultar(txtNomeFantasia.getText(), txtRazaoSocial.getText());
         } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(UIConsultarFornecedor.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UIConsultarCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
         String[] columnNames = {"Id",
             "CNPJ",
@@ -197,18 +196,17 @@ public class UIConsultarFornecedor extends javax.swing.JFrame {
             "Nome Fantasia"};
         Object[][] data = null;
         DefaultTableModel dtm = new DefaultTableModel(data, columnNames);
-         
+
         int n = lista.size();
         for(int i=0; i<n; i++){
-            Object[] linha = {lista.get(i).getId().toString(), 
-                              lista.get(i).getCnpj(), 
-                              lista.get(i).getRazaoSocial(),
-                              lista.get(i).getNomeFantasia()};
+            Object[] linha = {lista.get(i).getId().toString(),
+                lista.get(i).getCnpj(),
+                lista.get(i).getRazaoSocial(),
+                lista.get(i).getNomeFantasia()};
             dtm.addRow(linha);
         }
-        
-        
-        tblFornecedor.setModel(dtm);
+
+        tblCliente.setModel(dtm);
     }//GEN-LAST:event_txtRazaoSocialKeyReleased
 
     /**
@@ -228,26 +226,21 @@ public class UIConsultarFornecedor extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(UIConsultarFornecedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UIConsultarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(UIConsultarFornecedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UIConsultarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(UIConsultarFornecedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UIConsultarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(UIConsultarFornecedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UIConsultarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                try {
-                    new UIConsultarFornecedor().setVisible(true);
-                } catch (ClassNotFoundException ex) {
-                    Logger.getLogger(UIConsultarFornecedor.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (SQLException ex) {
-                    Logger.getLogger(UIConsultarFornecedor.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                new UIConsultarCliente().setVisible(true);
             }
         });
     }
@@ -256,7 +249,7 @@ public class UIConsultarFornecedor extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tblFornecedor;
+    private javax.swing.JTable tblCliente;
     private javax.swing.JTextField txtNomeFantasia;
     private javax.swing.JTextField txtRazaoSocial;
     // End of variables declaration//GEN-END:variables

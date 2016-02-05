@@ -23,6 +23,20 @@ public class UIConsultarMateriaPrima extends javax.swing.JFrame {
      * Creates new form UIConsultarMateriaPrima
      */
     List<MateriaPrima> listaMateriaPrima;
+    
+    
+    public class MyTableModel extends DefaultTableModel {
+
+       public MyTableModel(Object[][] tableData, Object[] colNames) {
+          super(tableData, colNames);
+       }
+
+       public boolean isCellEditable(int row, int column) {
+          return false;
+       }
+    }
+    
+    
     public UIConsultarMateriaPrima() throws ClassNotFoundException, SQLException {
         initComponents();
         listaMateriaPrima = controladorMateriaPrima.consultar();
@@ -33,7 +47,7 @@ public class UIConsultarMateriaPrima extends javax.swing.JFrame {
             "Valor Unt.",
             "Descrição"};
         Object[][] data = null;
-        DefaultTableModel dtm = new DefaultTableModel(data, columnNames);
+        MyTableModel dtm = new MyTableModel(data, columnNames);
         
          
         int n = listaMateriaPrima.size();
@@ -133,7 +147,7 @@ public class UIConsultarMateriaPrima extends javax.swing.JFrame {
             "Valor Unt.",
             "Descrição"};
         Object[][] data = null;
-        DefaultTableModel dtm = new DefaultTableModel(data, columnNames);
+        MyTableModel dtm = new MyTableModel(data, columnNames);
         
          
         int n = listaMateriaPrima.size();

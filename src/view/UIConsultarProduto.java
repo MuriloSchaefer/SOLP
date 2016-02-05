@@ -23,6 +23,18 @@ public class UIConsultarProduto extends javax.swing.JFrame {
      * Creates new form UIConsultarProduto
      */
     List<Produto> listaProduto;
+    
+    public class MyTableModel extends DefaultTableModel {
+
+       public MyTableModel(Object[][] tableData, Object[] colNames) {
+          super(tableData, colNames);
+       }
+
+       public boolean isCellEditable(int row, int column) {
+          return false;
+       }
+    }
+    
     public UIConsultarProduto() throws ClassNotFoundException, SQLException {
         initComponents();
         listaProduto = controladorProduto.consultar();
@@ -32,7 +44,7 @@ public class UIConsultarProduto extends javax.swing.JFrame {
             "Descrição",
             "custo"};
         Object[][] data = null;
-        DefaultTableModel dtm = new DefaultTableModel(data, columnNames);
+        MyTableModel dtm = new MyTableModel(data, columnNames);
         
         int n = listaProduto.size();
         for(int i=0; i<n; i++){
@@ -127,7 +139,7 @@ public class UIConsultarProduto extends javax.swing.JFrame {
             "Descrição",
             "custo"};
         Object[][] data = null;
-        DefaultTableModel dtm = new DefaultTableModel(data, columnNames);
+        MyTableModel dtm = new MyTableModel(data, columnNames);
         
         int n = listaProduto.size();
         for(int i=0; i<n; i++){

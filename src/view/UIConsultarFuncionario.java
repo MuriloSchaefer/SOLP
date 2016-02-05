@@ -21,6 +21,18 @@ public class UIConsultarFuncionario extends javax.swing.JFrame {
     /**
      * Creates new form UIConsultarFuncionario
      */
+    
+    public class MyTableModel extends DefaultTableModel {
+
+       public MyTableModel(Object[][] tableData, Object[] colNames) {
+          super(tableData, colNames);
+       }
+
+       public boolean isCellEditable(int row, int column) {
+          return false;
+       }
+    }
+     
     public UIConsultarFuncionario() throws ClassNotFoundException, SQLException {
         initComponents();
         List<model.Funcionario> lista = null;
@@ -32,7 +44,7 @@ public class UIConsultarFuncionario extends javax.swing.JFrame {
             "Permissoes",
             "Usuario"};
         Object[][] data = null;
-        DefaultTableModel dtm = new DefaultTableModel(data, columnNames);
+        MyTableModel dtm = new MyTableModel(data, columnNames);
          
         int n = lista.size();
         for(int i=0; i<n; i++){
@@ -139,7 +151,7 @@ public class UIConsultarFuncionario extends javax.swing.JFrame {
             "Permissoes",
             "Usuario"};
         Object[][] data = null;
-        DefaultTableModel dtm = new DefaultTableModel(data, columnNames);
+        MyTableModel dtm = new MyTableModel(data, columnNames);
          
         int n = lista.size();
         for(int i=0; i<n; i++){
