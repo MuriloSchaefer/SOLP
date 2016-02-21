@@ -26,6 +26,10 @@ public class ProdutoDAO {
     private Connection conn = null;
     private Statement stm = null;
     
+    /** Método contrutor responsável por criar uma nova conexão com o banco de dados
+     * 
+     * @throws ClassNotFoundException 
+     */
     public ProdutoDAO() throws ClassNotFoundException{
         try {
             this.conn = new conectaBanco().getConnection();
@@ -33,10 +37,21 @@ public class ProdutoDAO {
            // Logger.getLogger(Funcion.class.getName()).log(Level.SEVERE, null, ex);
         } 
     }
+    /** Método responsável por fechar a conexão com o banco de dados
+     * 
+     * @throws SQLException 
+     */
     public void destroy() throws SQLException{
         conn.close();
     }
     
+    /** Método responsável pela inserção de um novo produto no banco de dados
+     * 
+     * @param produto um objeto do tipo Produto correspondente ao produto a ser inserido
+     * @return Retorna um inteiro equivalente ao id inserido
+     * @throws ClassNotFoundException
+     * @throws SQLException 
+     */
     public int add(Produto produto) throws ClassNotFoundException, SQLException{
         MateriaPrimaPorProdutoDAO MateriaPrimaConn = new MateriaPrimaPorProdutoDAO();
         List<MateriaPrimaPorProduto> listaMateriaPrima = produto.getMateriasPrimas();
@@ -62,6 +77,12 @@ public class ProdutoDAO {
         return add;
     }
     
+    /** Método para consultar todos os produtos cadastrados
+     * 
+     * @return Retorna uma lista com todos os produtos cadastrados no banco de dados
+     * @throws SQLException
+     * @throws ClassNotFoundException 
+     */
     public List<Produto> consultar() throws SQLException, ClassNotFoundException{
         List<Produto> listaProduto = new ArrayList<>();
         ResultSet rs, rsMateriasPrimas;
@@ -113,6 +134,13 @@ public class ProdutoDAO {
         return listaProduto;
     }
     
+    /** Método responsável pela consulta de um produto pelo seu id
+     * 
+     * @param id Inteiro correspondente ao id desejado
+     * @return Retorna uma lista de produtos que contenham o id desejado
+     * @throws SQLException
+     * @throws ClassNotFoundException 
+     */
     public List<Produto> consultar(int id) throws SQLException, ClassNotFoundException{
         List<Produto> listaProduto = new ArrayList<>();
         ResultSet rs, rsMateriasPrimas;
@@ -164,6 +192,13 @@ public class ProdutoDAO {
         return listaProduto;
     }
     
+    /** Método responsável pela consulta de um Produto pelo nome
+     * 
+     * @param nome String contendo o nome do produto desejado
+     * @return Retorna uma lista de produtos que contenham o nome desejado
+     * @throws SQLException
+     * @throws ClassNotFoundException 
+     */
     public List<Produto> consultar(String nome) throws SQLException, ClassNotFoundException{
         List<Produto> listaProduto = new ArrayList<>();
         ResultSet rs, rsMateriasPrimas;
@@ -215,6 +250,12 @@ public class ProdutoDAO {
         return listaProduto;
     }
     
+    /** Método responsável pela exclusão de um produto no banco de dados
+     * 
+     * @param produto um objeto do tipo Produto correspondente ao produto a ser excluido
+     * @return Retorna true em caso de sucesso e false em caso de falha
+     * @throws SQLException 
+     */
     public boolean excluir(Produto produto) throws SQLException{
         try {
             stm = conn.createStatement();

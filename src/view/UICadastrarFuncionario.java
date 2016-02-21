@@ -309,16 +309,16 @@ public class UICadastrarFuncionario extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
+    /**
+    * Quando o usuário clicar em cadastrar será criado um objeto do tipo endereco
+    * e um objeto do tipo funcionario. Após isto ambos os objetos serão enviados à
+    * classe controladorFuncionario, que fará o cadastro do endereço e do funcionario
+    * associando um ao outro 
+    *
+    */
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
         // TODO add your handling code here:
-        /**
-        * Quando o usuário clicar em cadastrar será criado um objeto do tipo endereco
-        * e um objeto do tipo funcionario. Após isto ambos os objetos serão enviados à
-        * classe controladorFuncionario, que fará o cadastro do endereço e do funcionario
-        * associando um ao outro 
-        *
-        */
+        
         boolean add = false; //variavel para validar a inserção
         
         if(CadEnd){
@@ -372,6 +372,7 @@ public class UICadastrarFuncionario extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
+    
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         
         this.dispose();

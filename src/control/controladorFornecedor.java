@@ -20,6 +20,16 @@ import model.Fornecedor;
  */
 public class controladorFornecedor {
     
+    /** Método para a inserção de um Fornecedor no banco de dados
+     *  Fornecedor não será cadastrado caso já exista um cnpj igual cadastrado
+     * 
+     * 
+     * @param fornecedor - um objeto do tipo Fornecedor que será inserido no banco de dados
+     * @return Retorna true em caso de sucesso e False em caso de falha
+     * @throws ClassNotFoundException
+     * @throws NoSuchAlgorithmException
+     * @throws SQLException 
+     */
     public static boolean add(Fornecedor fornecedor) throws ClassNotFoundException, NoSuchAlgorithmException, SQLException{
         FornecedorDAO con = new FornecedorDAO(); //cria uma nova conexão com o banco de dados
         List<Fornecedor> lista = con.consultar(); //cria uma lista de fornecedores e preenche esta com o resultado da consulta
@@ -38,7 +48,14 @@ public class controladorFornecedor {
         return add >=0; //retorna true caso o add >=0 e false caso seja -1
     }
     
-    //Consulta com parametros de nome fantasia e razão social
+    /** Método para consulta de um Fornecedor pelo seu nome Fantasia ou Razão Social
+     *  
+     * @param nomeFantasia - uma String contendo o nome fantasia do Fornecedor
+     * @param razaoSocial - uma String contendo a razão social do Fornecedor
+     * @return Retorna uma lista de Fornecedores que contenham aquele nome fantasia e / ou aquela razão social
+     * @throws ClassNotFoundException
+     * @throws SQLException 
+     */
     public static List<Fornecedor> consultar(String nomeFantasia, String razaoSocial) throws ClassNotFoundException, SQLException{
         FornecedorDAO con = new FornecedorDAO(); //cria uma nova conexão com o banco de dados
         List<Fornecedor> rs; //cria uma lista de fornecedores
@@ -47,7 +64,12 @@ public class controladorFornecedor {
         return rs; // retorna a lista
     }
     
-    //Consulta sem paramentros (retorna todos os elementos cadastrados)
+    /** Método para consulta de todos os Fornecedores cadastrados no banco de dados
+     * 
+     * @return Retorna uma lista de Fornecedores contendo todos os fornecedores cadastrados na base de dados
+     * @throws ClassNotFoundException
+     * @throws SQLException 
+     */
     public static List<Fornecedor> consultar() throws ClassNotFoundException, SQLException{
         FornecedorDAO con = new FornecedorDAO(); //cria uma nova conexão com o banco de dados
         List<Fornecedor> rs; // cria uma lista de fornecedores
@@ -56,6 +78,14 @@ public class controladorFornecedor {
         return rs; // retorna a lista
     }
     
+    /** Método para exclusão de um Fornecedor da base de dados
+     * Também serão excluidos todos os endereços vinculados a este Fornecedor
+     * 
+     * @param fornecedor um objeto do tipo Fornecedor que será excluido do banco de dados
+     * @return Retorna true em caso de sucesso e false em caso de falha
+     * @throws ClassNotFoundException
+     * @throws SQLException 
+     */
     public static boolean excluir(Fornecedor fornecedor) throws ClassNotFoundException, SQLException{
         EnderecoDAO EndConn = new EnderecoDAO(); //cria uma nova conexão com o banco (tabela endereco)
         FornecedorDAO FornecedorConn = new FornecedorDAO(); //cria uma nova conexão com o banco (tabela fornecedor)

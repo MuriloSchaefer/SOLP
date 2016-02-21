@@ -25,17 +25,32 @@ public class materiaPrimaDAO {
     private Connection conn = null;
     private Statement stm = null;
     
+    /** Método construtor responsável por criar uma nova conexão com o banco de dados
+     * 
+     * @throws ClassNotFoundException 
+     */
     public materiaPrimaDAO() throws ClassNotFoundException{
         try {
             this.conn = new conectaBanco().getConnection();
         } catch (SQLException ex) {
            // Logger.getLogger(Funcion.class.getName()).log(Level.SEVERE, null, ex);
         } 
-    }
+    } 
+    
+    /** Método responsável pelo fechamento da conexão do banco de dados
+     * 
+     * @throws SQLException 
+     */
     public void destroy() throws SQLException{
         conn.close();
     }
     
+    /** Método responsável pela inserção de uma matéria prima no banco de dados
+     * 
+     * @param materiaPrima um objeto do tipo MateriaPrima correspondente a matéria prima a ser inserida no banco de dados
+     * @return Retorna um inteiro equivalente ao id da matéria prima cadastrada
+     * @throws SQLException 
+     */
     public int add(MateriaPrima materiaPrima) throws SQLException{
         ResultSet rs;
         stm = conn.createStatement();
@@ -47,7 +62,11 @@ public class materiaPrimaDAO {
         //conn.close();
         return id;
     }
-    
+    /** Método responsável por consultar todas as matérias primas cadastradas no banco de dados
+     * 
+     * @return Retorna uma lista de Matéria prima contendo todas as matéria cadastradas
+     * @throws SQLException 
+     */
     public List<MateriaPrima> consultar() throws SQLException{
         List<MateriaPrima> lista = new ArrayList<>();
         ResultSet rs, rsFornecedor;
@@ -109,6 +128,13 @@ public class materiaPrimaDAO {
         return lista;
     }    
     
+    /** Método responsável por consultar todas as matérias primas de um fornecedor
+     * 
+     * @param id um inteiro equivalente ao id desejado 
+     * @param fornecedor um inteiro equivalente ao id do fornecedor desejado
+     * @return Retorna uma lista de Matéria prima que tenham o fornecedor desejado
+     * @throws SQLException 
+     */
     public List<MateriaPrima> consultar(int id, int fornecedor) throws SQLException{
         List<MateriaPrima> lista = new ArrayList<>();
         ResultSet rs, rsFornecedor;
@@ -169,7 +195,12 @@ public class materiaPrimaDAO {
         //conn.close();
         return lista;
     } 
-    
+    /** Método responsável pela consulta de uma matéria prima pelo id
+     * 
+     * @param id um inteiro correspondente ao id desejado
+     * @return Retorna uma lista de materias primas que contenham o id
+     * @throws SQLException 
+     */
     public List<MateriaPrima> consultar(int id) throws SQLException{
         List<MateriaPrima> lista = new ArrayList<>();
         ResultSet rs, rsFornecedor;
@@ -231,7 +262,12 @@ public class materiaPrimaDAO {
         return lista;
     } 
     
-    
+    /** Método responsável por consultar uma matéria prima pelo nome
+     * 
+     * @param nome String contendo o nome da matéria prima desejada
+     * @return Retorna uma lista de Matéria prima que contenham o nome desejado
+     * @throws SQLException 
+     */
     public List<MateriaPrima> consultar(String nome) throws SQLException{
         List<MateriaPrima> lista = new ArrayList<>();
         ResultSet rs, rsFornecedor;
@@ -293,6 +329,12 @@ public class materiaPrimaDAO {
         return lista;
     } 
     
+    /** Método responsável pela exclusão de uma matéria prima do sistema
+     * 
+     * @param materiaPrima um objeto do tipo MateriaPrima referente a matéria prima a ser excluida
+     * @return Retorna true em caso de sucesso e false em caso de falha
+     * @throws SQLException 
+     */
     public boolean excluir(MateriaPrima materiaPrima) throws SQLException{
         try {
             stm = conn.createStatement();

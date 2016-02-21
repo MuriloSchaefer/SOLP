@@ -28,6 +28,12 @@ public class FuncionarioDAO {
     private Connection conn = null;
     private Statement stm = null;
     
+    /** Método responsável pela criptografia
+     *  
+     * @param password String contendo a senha a ser criptografada
+     * @return Retorna um String com a senha criptografada
+     * @throws NoSuchAlgorithmException 
+     */
     public static String convertPasswordToMD5(String password) throws NoSuchAlgorithmException {
         MessageDigest md = MessageDigest.getInstance("MD5");
  
@@ -36,10 +42,18 @@ public class FuncionarioDAO {
         return String.format("%32x", hash);
     }
     
+    /** Método responsável por fechar a conexão com o banco de dados
+     * 
+     * @throws SQLException 
+     */
     public void destroy() throws SQLException{
         conn.close();
     }
     
+    /** Método construtor responsável por criar uma nova conexão com o banco de dados
+     * 
+     * @throws ClassNotFoundException 
+     */
     public FuncionarioDAO() throws ClassNotFoundException{
         try {
             this.conn = new conectaBanco().getConnection();
@@ -47,6 +61,15 @@ public class FuncionarioDAO {
            // Logger.getLogger(Funcion.class.getName()).log(Level.SEVERE, null, ex);
         } 
     }
+    /** Método responsável pela inserção de um novo Funcionário no banco de dados
+     *  Fará também o cadastro de um novo Endereco
+     * 
+     * @param endereco um objeto do tipo Endereco correspondente ao endereco a ser cadastrado
+     * @param funcionario um objeto do tipo Funcionario correspondente ao funcionario a ser inserido
+     * @return Retorna um numero inteiro correspondente ao id do funcionário inserido
+     * @throws NoSuchAlgorithmException
+     * @throws ClassNotFoundException 
+     */
     public int add(Endereco endereco, Funcionario funcionario) throws NoSuchAlgorithmException, ClassNotFoundException{
         try {
             ResultSet rs;
@@ -66,6 +89,13 @@ public class FuncionarioDAO {
             return -1;
         }
     }    
+    /** Método responsável pela inserção de um novo funcionario no banco de dados
+     * 
+     * @param funcionario um objeto do tipo Funcionario correspondendo ao funcionario a ser inserido
+     * @return Retorna um inteiro com o id do funcionario cadastrado
+     * @throws NoSuchAlgorithmException
+     * @throws ClassNotFoundException 
+     */
     public int add(Funcionario funcionario) throws NoSuchAlgorithmException, ClassNotFoundException{
         try {
             ResultSet rs;
@@ -82,6 +112,11 @@ public class FuncionarioDAO {
             return -1;
         }
     }    
+    /** Método responsavel pela exclusão de um funcionario
+     * 
+     * @param funcionario um objeto do tipo Funcionario correspondente ao funcionario a ser excluido
+     * @return 
+     */
     public boolean excluir(Funcionario funcionario){
         try {
             stm = conn.createStatement();
@@ -96,6 +131,11 @@ public class FuncionarioDAO {
         }
     }
     
+    /** Método responsável pela consulta a todos os funcionarios cadastrados
+     * 
+     * @return Retorna uma lista de funcionario contendo todos os funcionarios cadastrados
+     * @throws SQLException 
+     */
     public List<Funcionario> consultar() throws SQLException{
         List<Funcionario> lista = new ArrayList<>();
         ResultSet rs = null;
@@ -125,6 +165,12 @@ public class FuncionarioDAO {
         //conn.close();
         return lista;   
     }
+    /** Método responsável pela consulta de um funcionario pelo nome do mesmo
+     * 
+     * @param nome String contendo o nome do funcionario desejado
+     * @return Retorna uma lista de funcionarios que contenham o nome desejado
+     * @throws SQLException 
+     */
     public List<Funcionario> consultar(String nome) throws SQLException{
         List<Funcionario> lista = new ArrayList<>();
         ResultSet rs = null;
@@ -153,7 +199,13 @@ public class FuncionarioDAO {
         //conn.close();
         return lista;   
     }
-    
+    /** Método responsável pela consulta de um funcionario pelo usuario e senha
+     * 
+     * @param usuario String contendo o nome de usuario desejado
+     * @param senha String contendo a senha
+     * @return Retorna uma lista de funcionarios que contenham aquele login e senha
+     * @throws SQLException 
+     */
     public List<Funcionario> consultar(String usuario, String senha) throws SQLException{
         List<Funcionario> lista = new ArrayList<>();
         ResultSet rs = null;

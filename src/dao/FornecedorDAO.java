@@ -27,6 +27,10 @@ public class FornecedorDAO {
     private Connection conn = null;
     private Statement stm = null;
     
+    /** Método contrutor responsável pela conexão com o banco de dados
+     * 
+     * @throws ClassNotFoundException 
+     */
     public FornecedorDAO() throws ClassNotFoundException{
         try {
             this.conn = new conectaBanco().getConnection();
@@ -34,11 +38,21 @@ public class FornecedorDAO {
            // Logger.getLogger(Funcion.class.getName()).log(Level.SEVERE, null, ex);
         } 
     }
-    
+    /** Método responsável por fechar a conexão com o banco de dados
+     * 
+     * @throws SQLException 
+     */
     public void destroy() throws SQLException{
         conn.close();
     }
-    
+    /** Método repsonsável pela inserção de um novo fornecedor no banco de dados
+     * 
+     * @param fornecedor um objeto do tipo Fornecedor correspondente ao fornecedor a ser inserido
+     * @return Retorna um inteiro correspondente ao id do fornecedor cadastrado
+     * @throws ClassNotFoundException
+     * @throws NoSuchAlgorithmException
+     * @throws SQLException 
+     */
     public int add(Fornecedor fornecedor) throws ClassNotFoundException, NoSuchAlgorithmException, SQLException{
         EnderecoDAO Endconn = new EnderecoDAO();
         List<Integer> ids = new ArrayList<>();
@@ -70,6 +84,11 @@ public class FornecedorDAO {
         return id;
     }
     
+    /** Método responsável consulta de todos os fornecedores cadastrados no sistema
+     * 
+     * @return Retorna uma lista de fornecedores contendo todos os fornecedores cadastrados
+     * @throws SQLException 
+     */
     public List<Fornecedor> consultar() throws SQLException{
         List<Fornecedor> lista = new ArrayList<>();
         ResultSet rs = null;
@@ -120,6 +139,13 @@ public class FornecedorDAO {
         return lista;  
     }
     
+    /** Método responsável por consultar um fornecedor buscando-o pelo nome fantasia e razão social
+     * 
+     * @param nomeFantasia uma string correspondente ao nome fantasia desejado
+     * @param razaoSocial uma string correspondente a razao social desejado
+     * @return Retorna uma lista de Fornecedores que contenham o nome fantasia e razão social desejados
+     * @throws SQLException 
+     */
     public List<Fornecedor> consultar(String nomeFantasia, String razaoSocial) throws SQLException{
         List<Fornecedor> lista = new ArrayList<>();
         ResultSet rs = null;
@@ -172,6 +198,11 @@ public class FornecedorDAO {
         return lista;   
     }
     
+    /** Método responsável pela exclusão de um fornecedor do banco de dados
+     * 
+     * @param fornecedor um objeto do tipo Fornecedor correspondente ao fornecedor a ser excluido
+     * @return Retorna true em caso de sucesso e false em caso de falha
+     */
     public boolean excluir(Fornecedor fornecedor){
         try {
             stm = conn.createStatement();

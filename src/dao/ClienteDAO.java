@@ -27,6 +27,10 @@ public class ClienteDAO {
     private Connection conn = null;
     private Statement stm = null;
     
+    /** Método contrutor da classe (Responsável por criar uma conexão com o banco)
+     * 
+     * @throws ClassNotFoundException 
+     */
     public ClienteDAO() throws ClassNotFoundException{
         try {
             this.conn = new conectaBanco().getConnection();
@@ -35,10 +39,23 @@ public class ClienteDAO {
         } 
     }
     
+    /** Método responsável por fechar a conexão com o banco
+     * 
+     * @throws SQLException 
+     */
     public void destroy() throws SQLException{
         conn.close();
     }
     
+    /** Método responsável pela inserção de um novo  cliente no banco de dados
+     *  fará também a inserção de todos os enderecos relacionados com o cliente
+     * 
+     * @param cliente um objeto do tipo Cliente a ser inserido
+     * @return Retorna um inteiro correspondente ao id do cliente cadastrado
+     * @throws ClassNotFoundException
+     * @throws NoSuchAlgorithmException
+     * @throws SQLException 
+     */
     public int add(Cliente cliente) throws ClassNotFoundException, NoSuchAlgorithmException, SQLException{
         EnderecoDAO Endconn = new EnderecoDAO();
         List<Integer> ids = new ArrayList<>();
@@ -70,6 +87,11 @@ public class ClienteDAO {
         return id;
     }
     
+    /** Método responsável pela consulta de todos os clientes no banco
+     * 
+     * @return Retorna uma lista de clientes contendo todos os clientes cadastrados
+     * @throws SQLException 
+     */
     public List<Cliente> consultar() throws SQLException{
         List<Cliente> lista = new ArrayList<>();
         ResultSet rs = null;
@@ -120,6 +142,13 @@ public class ClienteDAO {
         return lista;  
     }
     
+    /** Método responsável pela consulta de um cliente pelo seu nome fantasia e razão social
+     * 
+     * @param nomeFantasia uma String contendo o nome fantasia do cliente desejado
+     * @param razaoSocial uma String contendo a razao social do cliente desejado
+     * @return Retorna uma lista de clientes que contenham o nome fantasia e razão social desejados
+     * @throws SQLException 
+     */
     public List<Cliente> consultar(String nomeFantasia, String razaoSocial) throws SQLException{
         List<Cliente> lista = new ArrayList<>();
         ResultSet rs = null;
@@ -172,6 +201,11 @@ public class ClienteDAO {
         return lista;   
     }
     
+    /** Método resposável pela exclusão de um cliente do banco de dados
+     * 
+     * @param cliente um objeto do tipo Cliente correspondente ao cliente que se deseja excluir
+     * @return Retorna true em caso de sucesso e false em caso de falha
+     */
     public boolean excluir(Cliente cliente){
         try {
             stm = conn.createStatement();

@@ -22,6 +22,12 @@ public class conectaBanco {
     static String username = "postgres";
     static String password = "admin";
     
+    /** Método responsável por criar uma nova conexão com o banco de dados
+     * 
+     * @return Retorna a conexão criada
+     * @throws SQLException
+     * @throws ClassNotFoundException 
+     */
     public Connection getConnection() throws SQLException, ClassNotFoundException{
          
         Connection conn = null;

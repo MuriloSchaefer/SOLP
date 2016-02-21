@@ -19,7 +19,16 @@ import model.Endereco;
  */
 public class controladorFuncionario {
     
-    //Inserção com o cadastro de um novo endereco
+    /** Método para inserção de um novo Funcionário no banco de dados
+     * Não será feito o cadastro caso já exista um funcionário com o mesmo cpf
+     * 
+     * @param endereco um objeto do tipo Endereco contendo o endereco do funcionario a ser cadastrado
+     * @param funcionario um objeto do tipo Funcionario contendo o funcionario a ser cadastrado
+     * @return Retorna true em caso de sucesso na inserção e false em caso de falha
+     * @throws ClassNotFoundException
+     * @throws SQLException
+     * @throws NoSuchAlgorithmException 
+     */
     public static boolean add(Endereco endereco, Funcionario funcionario) throws ClassNotFoundException, SQLException, NoSuchAlgorithmException{
         FuncionarioDAO con = new FuncionarioDAO(); //cria uma nova conexão com o banco de dados
         List<Funcionario> lista; //cria uma lista de funcionarios
@@ -37,7 +46,15 @@ public class controladorFuncionario {
         return add >= 0; // retorna true caso add >= 0 ou false se add < 0
     }
     
-    //Inserção com um endereço já cadastrado
+    /** Método para inserção de um novo Funcionário no banco de dados
+     *  Não será feito o cadastro caso já exista um funcionário com o mesmo cpf
+     * 
+     * @param funcionario um objeto do tipo Funcionario contendo o funcionario a ser cadastrado
+     * @return Retorna true em caso de sucesso e false em caso de falha
+     * @throws ClassNotFoundException
+     * @throws SQLException
+     * @throws NoSuchAlgorithmException 
+     */
     public static boolean add(Funcionario funcionario) throws ClassNotFoundException, SQLException, NoSuchAlgorithmException{
         FuncionarioDAO con = new FuncionarioDAO(); //cria uma nova conexão com o banco de dados
         List<Funcionario> lista; //cria uma lista de funcionarios
@@ -55,6 +72,13 @@ public class controladorFuncionario {
         con.destroy();
         return add >= 0;
     }
+    
+    /** Método para consulta de todos os Funcionários cadastrados no banco de dados
+     * 
+     * @return Retorna uma lista de funcionarios contendo todos os funcionários cadastrados
+     * @throws ClassNotFoundException
+     * @throws SQLException 
+     */
     public static List<Funcionario> consultar() throws ClassNotFoundException, SQLException{
         FuncionarioDAO con = new FuncionarioDAO(); 
         List<Funcionario> rs;
@@ -62,6 +86,14 @@ public class controladorFuncionario {
         con.destroy();
         return rs;
     }
+    
+    /** Método para a consulta de um funcionário pelo nome
+     * 
+     * @param nome uma String contendo o nome do funcionário
+     * @return Retorna uma lista de funcionarios contendo os funcionarios que tenham aquele nome
+     * @throws ClassNotFoundException
+     * @throws SQLException 
+     */
     public static List<Funcionario> consultar(String nome) throws ClassNotFoundException, SQLException{
         FuncionarioDAO con = new FuncionarioDAO(); 
         List<Funcionario> rs;
@@ -69,6 +101,14 @@ public class controladorFuncionario {
         con.destroy();
         return rs;
     }
+    
+    /** Método para Exclusão de um funcionário
+     * 
+     * @param funcionario um objeto do tipo Funcionario que será excluido do banco de dados
+     * @return Retorna true em caso de sucesso e false em caso de falha
+     * @throws ClassNotFoundException
+     * @throws SQLException 
+     */
     public static boolean excluir(Funcionario funcionario) throws ClassNotFoundException, SQLException{
         FuncionarioDAO con = new FuncionarioDAO(); 
         boolean excluir = con.excluir(funcionario);

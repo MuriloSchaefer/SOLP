@@ -271,15 +271,15 @@ public class UICadastrarFornecedor extends javax.swing.JFrame {
 
         this.dispose(); //remove o form (janela) da memoria.
     }//GEN-LAST:event_btnCancelarActionPerformed
-
+    /**
+    * Quando o usuário clicar em cadastrar será criado uma lista de objetos do tipo Endereco
+    * e um objeto do tipo Fornecedor. Após isto ambos os objetos serão enviados à
+    * classe controladorFornecedor, que fará o cadastro do endereço e do fornecedor
+    * associando um ao outro.
+    */
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
         // TODO add your handling code here:
-        /**
-        * Quando o usuário clicar em cadastrar será criado uma lista de objetos do tipo Endereco
-        * e um objeto do tipo Fornecedor. Após isto ambos os objetos serão enviados à
-        * classe controladorFornecedor, que fará o cadastro do endereço e do fornecedor
-        * associando um ao outro.
-        */
+       
         int qntd = tblEndereco.getRowCount(); // conta quantas linhas tem na tabela de enderecos
         
         // --- Este bloco fara a leitura da tabela, lendo cada linha dela e criando um objeto do tipo endereco
@@ -317,14 +317,15 @@ public class UICadastrarFornecedor extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "Fornecedor nao cadastrado!");
         }
     }//GEN-LAST:event_btnCadastrarActionPerformed
-
+    
+    /**
+    * Quando o usuario clicar no botão para adicionar um novo endereço, 
+    * será pego o modelo atual da tabela (linhas ja existentes) e então
+    * adicionada uma nova linha correspondente aos valores preechidos.
+    */ 
     private void addEnderecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addEnderecoActionPerformed
         // TODO add your handling code here:
-        /**
-         * Quando o usuario clicar no botão para adicionar um novo endereço, 
-         * será pego o modelo atual da tabela (linhas ja existentes) e então
-         * adicionada uma nova linha correspondente aos valores preechidos.
-         */        
+               
         
         DefaultTableModel dtm = (DefaultTableModel)tblEndereco.getModel();
         
@@ -337,13 +338,14 @@ public class UICadastrarFornecedor extends javax.swing.JFrame {
         tblEndereco.setModel(dtm);
     }//GEN-LAST:event_addEnderecoActionPerformed
 
+    /**
+    * Quando o usuario clicar no botão excluir endereco, será pego a linha
+    * selecionada na tabela e então está será removida, caso não tenha uma linha
+    * selecionada, nada será feito.
+    */
     private void removeEnderecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeEnderecoActionPerformed
         // TODO add your handling code here:
-        /**
-         * Quando o usuario clicar no botão excluir endereco, será pego a linha
-         * selecionada na tabela e então está será removida, caso não tenha uma linha
-         * selecionada, nada será feito.
-         */
+        
         int linha = tblEndereco.getSelectedRow(); //pega a linha selecionada
         if(linha >= 0){ //se realmente houver uma linha selecionada, então
             DefaultTableModel dtm = (DefaultTableModel)tblEndereco.getModel();

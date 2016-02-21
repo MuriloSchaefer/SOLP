@@ -19,7 +19,12 @@ import model.Funcionario;
  */
 public class controladorLogin {
     
-    //criptografa a senha
+    /** Método responsável pela criptografia da senha
+     * 
+     * @param password uma String contendo a senha a ser criptografada
+     * @return Retorna uma String com a senha criptografada
+     * @throws NoSuchAlgorithmException 
+     */
     public static String convertPasswordToMD5(String password) throws NoSuchAlgorithmException {
         MessageDigest md = MessageDigest.getInstance("MD5");
  
@@ -28,7 +33,15 @@ public class controladorLogin {
         return String.format("%32x", hash);
     }
     
-    
+   /** Método para validar o login
+    * 
+    * @param usuario uma String contendo o nome de usuário
+    * @param senha uma String contendo a senha do usuário
+    * @return Retorna uma lista de funcionarios contendo aquele login e senha
+    * @throws ClassNotFoundException
+    * @throws SQLException
+    * @throws NoSuchAlgorithmException 
+    */
    public static List<Funcionario> validaLogin(String usuario, String senha) throws ClassNotFoundException, SQLException, NoSuchAlgorithmException{
         FuncionarioDAO con = new FuncionarioDAO(); //cria uma nova conexão com o banco
         String senhaMD5 = convertPasswordToMD5(senha); //criptografa a senha

@@ -20,9 +20,19 @@ import model.Endereco;
  */
 public class controladorCliente {
 
+    /** Método contrutor */
     public controladorCliente() {
     }
     
+    /** Método para a inserção de um novo cliente no banco de dados
+     * 
+     * 
+     * @param cliente - Um objeto do tipo Cliente que será inserido no banco
+     * @return - True caso o cadastro tenha ocorrido com sucesso e False em caso de falha
+     * @throws ClassNotFoundException
+     * @throws NoSuchAlgorithmException
+     * @throws SQLException 
+     */
     public static boolean add(Cliente cliente) throws ClassNotFoundException, NoSuchAlgorithmException, SQLException{
      ClienteDAO con = new ClienteDAO();
      int add = con.add(cliente);
@@ -31,7 +41,15 @@ public class controladorCliente {
     }
     
     
-    //Consulta com parametros de nome fantasia e razão social
+    /** Método para a consulta de um Cliente pelo nome fantasia e / ou razão social
+     * Caso os dois parametros não forem nulos o retorno será a interseção entre as 2 pesquisas
+     * 
+     * @param nomeFantasia - String contendo o nome fantasia do cliente
+     * @param razaoSocial - String contendo a razão social do cliente
+     * @return Lista de Clientes que contenham aquele nome fantasia e / ou razão social
+     * @throws ClassNotFoundException
+     * @throws SQLException 
+     */
     public static List<Cliente> consultar(String nomeFantasia, String razaoSocial) throws ClassNotFoundException, SQLException{
         ClienteDAO con = new ClienteDAO(); //cria uma nova conexão com o banco de dados
         List<Cliente> rs; //cria uma lista de Clientees
@@ -40,7 +58,12 @@ public class controladorCliente {
         return rs; // retorna a lista
     }
     
-    //Consulta sem paramentros (retorna todos os elementos cadastrados)
+    /** Método para a consulta de todos os clientes cadastrados no banco de dados
+     * 
+     * @return Uma lista de clientes contendo todos os clientes cadastrados
+     * @throws ClassNotFoundException
+     * @throws SQLException 
+     */
     public static List<Cliente> consultar() throws ClassNotFoundException, SQLException{
         ClienteDAO con = new ClienteDAO(); //cria uma nova conexão com o banco de dados
         List<Cliente> rs; // cria uma lista de Clientees
@@ -49,6 +72,13 @@ public class controladorCliente {
         return rs; // retorna a lista
     }
     
+    /** Método para exclusão de um cliente (também fará a exclusão de todos os endereços vinculados a este cliente)
+     * 
+     * @param Cliente Cliente que deseja ser excluido
+     * @return True caso o cliente tenha sido excluido com sucesso e False em caso de falha
+     * @throws ClassNotFoundException
+     * @throws SQLException 
+     */
     public static boolean excluir(Cliente Cliente) throws ClassNotFoundException, SQLException{
         EnderecoDAO EndConn = new EnderecoDAO(); //cria uma nova conexão com o banco (tabela endereco)
         ClienteDAO ClienteConn = new ClienteDAO(); //cria uma nova conexão com o banco (tabela Cliente)

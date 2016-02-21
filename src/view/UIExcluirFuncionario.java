@@ -109,7 +109,7 @@ public class UIExcluirFuncionario extends javax.swing.JFrame {
             boolean valida = false;
             try {
                 valida = controladorFuncionario.excluir(funcionario);
-            } catch (ClassNotFoundException ex) {
+            } catch (ClassNotFoundException | SQLException ex) {
                 Logger.getLogger(UIExcluirFuncionario.class.getName()).log(Level.SEVERE, null, ex);
             }
             if (valida){

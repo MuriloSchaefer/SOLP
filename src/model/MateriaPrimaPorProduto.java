@@ -15,9 +15,19 @@ public class MateriaPrimaPorProduto {
     private double quantidade;
     private double totalAcumulado;
 
+    /** Método contrutor
+     * 
+     */
     public MateriaPrimaPorProduto() {
     }
 
+    /** Método contrutor
+     * 
+     * @param id
+     * @param materiaPrima
+     * @param quantidade
+     * @param totalAcumulado 
+     */
     public MateriaPrimaPorProduto(Integer id, MateriaPrima materiaPrima, double quantidade, double totalAcumulado) {
         this.id = id;
         this.materiaPrima = materiaPrima;
@@ -25,34 +35,66 @@ public class MateriaPrimaPorProduto {
         this.totalAcumulado = totalAcumulado;
     }
 
+    /** Método para retorno do id da Matéria prima por produto
+     * 
+     * @return (Integer) id
+     */
     public Integer getId() {
         return id;
     }
 
+    /** Método para retorno da Matéria prima
+     * 
+     * @return (MateriaPrima) materiaPrima
+     */
     public MateriaPrima getMateriaPrima() {
         return materiaPrima;
     }
-
+    
+    /** Método para retorno da quantidade
+     * 
+     * @return (double) quantidade
+     */
     public double getQuantidade() {
         return quantidade;
     }
 
+    /** Método para retorno do total acumulado
+     * 
+     * @return (double) totalAcumulado
+     */
     public double getTotalAcumulado() {
         return totalAcumulado;
     }
 
+    /** Método atribuição do id
+     * 
+     * @param id Integer
+     */
     public void setId(Integer id) {
         this.id = id;
     }
 
+    /** Método para atribuição da Matéria Prima
+     * 
+     * @param materiaPrima MateriaPrima
+     */
     public void setMateriaPrima(MateriaPrima materiaPrima) {
         this.materiaPrima = materiaPrima;
     }
 
+    /** Método para atribuição da quantidade
+     * 
+     * @param quantidade double
+     */
     public void setQuantidade(double quantidade) {
         this.quantidade = quantidade;
     }
 
+    /** Método para atribuição do total acumulado
+     * 
+     * @param totalAcumulado double
+     */
     public void setTotalAcumulado(double totalAcumulado) {
         this.totalAcumulado = totalAcumulado;
     }

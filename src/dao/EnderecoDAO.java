@@ -23,6 +23,10 @@ public class EnderecoDAO {
     private Connection conn = null;
     private Statement stm = null;
     
+    /** Método construtor responsável por criar a conexão com o banco
+     * 
+     * @throws ClassNotFoundException 
+     */
     public EnderecoDAO() throws ClassNotFoundException{ //método construtor, cria uma nova conexão com o banco
         try {
             this.conn = new conectaBanco().getConnection(); //responsavel pela conexão no banco
@@ -31,10 +35,20 @@ public class EnderecoDAO {
         } 
     }
     
+    /** Método responsável por fechar a conexão com o banco
+     * 
+     * @throws SQLException 
+     */
     public void destroy() throws SQLException{
         conn.close();
     }
-    //Inserção de um novo endereco no banco
+    
+    /** Método responsável pela inserção de um novo Endereco no banco de dados
+     * 
+     * @param endereco um objeto do tipo Endereco correspondente ao endereco a ser inserido
+     * @return Retorna um inteiro correspondente ao id do endereço cadastrado
+     * @throws NoSuchAlgorithmException 
+     */
     public int add(Endereco endereco) throws NoSuchAlgorithmException{
         try {
             ResultSet rs; //retorno do sql
@@ -51,7 +65,12 @@ public class EnderecoDAO {
             return -1; //retorna -1 em caso de erro
         }
     }  
-    //Consulta sem parametros, retorna todos os elementos do banco
+    
+    /** Método responsável pela consulta de todos os enderecos cadastrados
+     * 
+     * @return Retorna uma lista de enderecos contendo todos os enderecos cadastrados
+     * @throws SQLException 
+     */
     public List<Endereco> consultar() throws SQLException{
         List<Endereco> lista = new ArrayList<>(); //cria uma lista de endereco
         ResultSet rs = null; //retorno do sql
@@ -81,6 +100,12 @@ public class EnderecoDAO {
         return lista;   // retorna a lista
     } 
     
+    /** Método responsável pela exclusão de um endereco do banco de dados
+     * 
+     * @param endereco um objeto do tipo Endereco correspondente ao endereco a ser excluido
+     * @return Retorna true em caso de sucesso e false em caso de falha
+     * @throws SQLException 
+     */
     public boolean excluir(Endereco endereco) throws SQLException{
         try {
             stm = conn.createStatement();

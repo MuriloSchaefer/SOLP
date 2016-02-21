@@ -21,6 +21,10 @@ public class MateriaPrimaPorProdutoDAO {
     private Connection conn = null;
     private Statement stm = null;
     
+    /** Método contrutor reponsável por criar uma nova conexão com o banco de dados
+     * 
+     * @throws ClassNotFoundException 
+     */
     public MateriaPrimaPorProdutoDAO() throws ClassNotFoundException{
         try {
             this.conn = new conectaBanco().getConnection();
@@ -28,10 +32,21 @@ public class MateriaPrimaPorProdutoDAO {
            // Logger.getLogger(Funcion.class.getName()).log(Level.SEVERE, null, ex);
         } 
     }
+    
+    /** Método responsável por fechar a conexão com o banco de dados
+     * 
+     * @throws SQLException 
+     */
     public void destroy() throws SQLException{
         conn.close();
     }
     
+    /** Método responsável pela inserção de uma nova matéria prima no banco de dados
+     * 
+     * @param materiaprima objeto do tipo MateriaPrima correspondente a matéria prima a ser inserida
+     * @return Retorna um inteiro equivalente ao id da matéria prima inserida
+     * @throws SQLException 
+     */
     public int add(MateriaPrimaPorProduto materiaprima) throws SQLException{
         stm = conn.createStatement();
         ResultSet rs;
@@ -45,6 +60,12 @@ public class MateriaPrimaPorProdutoDAO {
         return id;
     }
     
+    
+    /** Método responsável pela exclusão de uma matéria prima
+     * 
+     * @param materia um objeto do tipo MateriaPrima correspondente a matéria prima a ser excluida
+     * @return Retorna true em caso de sucesso e false em caso defalha
+     */
     public boolean excluir(MateriaPrimaPorProduto materia){
         try {
             stm = conn.createStatement();
