@@ -4,59 +4,39 @@
  * and open the template in the editor.
  */
 package view;
-import static java.awt.event.KeyEvent.VK_ESCAPE;
+
+import control.controladorCliente;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import control.controladorFornecedor;
-import control.controladorMateriaPrima;
-import model.Fornecedor;
-import model.MateriaPrima;
+import model.Cliente;
 
 /**
  *
  * @author murilo
  */
-public class UIExcluirFornecedor extends javax.swing.JFrame {
+public class UIExcluirCliente extends javax.swing.JFrame {
 
     /**
-     * Creates new form UIExcluirFornecedor
+     * Creates new form UIExcluirCliente
      */
-    List<Fornecedor> lista; //cria uma lista de fornecedores
-    List<MateriaPrima> listaMateriaPrima; //cria uma lista de materia prima
-    public UIExcluirFornecedor() throws ClassNotFoundException, SQLException {
+    List<Cliente> lista;
+    public UIExcluirCliente() throws ClassNotFoundException, SQLException {
         initComponents();
-        lista = controladorFornecedor.consultar(); //atualiza lista de fornecedores
+        lista = controladorCliente.consultar(); //atualiza lista de fornecedores
         int n = lista.size();
         for(int i=0; i<n; i++){
-            comboFornecedor.addItem(lista.get(i).getNomeFantasia()+ " - "+lista.get(i).getCnpj());
+            comboCliente.addItem(lista.get(i).getNomeFantasia()+ " - "+lista.get(i).getCnpj());
         }
         
-        listaMateriaPrima = controladorMateriaPrima.consultar(1, lista.get(comboFornecedor.getSelectedIndex()).getId());
         String[] columnNames = {"Id",
-            "Nome",
-            "Fornecedor",
-            "Unidade",
-            "Valor Unt.",
-            "Descrição"};
+            "Quantidade",
+            "Valor"};
         Object[][] data = null;
         DefaultTableModel dtm = new DefaultTableModel(data, columnNames);
-        
-         
-        n = listaMateriaPrima.size();
-        for(int i=0; i<n; i++){
-            Object[] linha = {listaMateriaPrima.get(i).getId().toString(), 
-                              listaMateriaPrima.get(i).getNome(), 
-                              listaMateriaPrima.get(i).getFornecedor().getRazaoSocial(),
-                              listaMateriaPrima.get(i).getUnd(),
-                              listaMateriaPrima.get(i).getValorUnd(),
-                              listaMateriaPrima.get(i).getDescricao()};
-            dtm.addRow(linha);
-        }
-        
         
         tblMateriaPrima.setModel(dtm);
     }
@@ -71,21 +51,28 @@ public class UIExcluirFornecedor extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+        comboCliente = new javax.swing.JComboBox();
+        jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblMateriaPrima = new javax.swing.JTable();
-        jLabel2 = new javax.swing.JLabel();
-        comboFornecedor = new javax.swing.JComboBox();
         btnExcluir = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Excluir Fornecedor");
-        addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                formKeyReleased(evt);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel1.setText("Cliente:");
+
+        comboCliente.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                comboClienteItemStateChanged(evt);
+            }
+        });
+        comboCliente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                comboClienteMouseClicked(evt);
             }
         });
 
-        jLabel1.setText("Fornecedor:");
+        jLabel2.setText("Pedidos em aberto:");
 
         tblMateriaPrima.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -99,19 +86,6 @@ public class UIExcluirFornecedor extends javax.swing.JFrame {
             }
         ));
         jScrollPane1.setViewportView(tblMateriaPrima);
-
-        jLabel2.setText("Matérias primas fornecidas:");
-
-        comboFornecedor.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                comboFornecedorItemStateChanged(evt);
-            }
-        });
-        comboFornecedor.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                comboFornecedorMouseClicked(evt);
-            }
-        });
 
         btnExcluir.setText("Excluir");
         btnExcluir.addActionListener(new java.awt.event.ActionListener() {
@@ -132,14 +106,14 @@ public class UIExcluirFornecedor extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(20, 20, 20)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 626, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 595, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(comboFornecedor, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                                .addComponent(comboCliente, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -148,8 +122,8 @@ public class UIExcluirFornecedor extends javax.swing.JFrame {
                 .addGap(43, 43, 43)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(comboFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                    .addComponent(comboCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -162,71 +136,39 @@ public class UIExcluirFornecedor extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void formKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyReleased
+    private void comboClienteItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboClienteItemStateChanged
+        String[] columnNames = {"Id",
+            "Quantidade",
+            "Valor"};
+        Object[][] data = null;
+        DefaultTableModel dtm = new DefaultTableModel(data, columnNames);
+
+        tblMateriaPrima.setModel(dtm);
+    }//GEN-LAST:event_comboClienteItemStateChanged
+
+    private void comboClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboClienteMouseClicked
         // TODO add your handling code here:
-        if(evt.getKeyCode() == VK_ESCAPE){
-            this.dispose();
-        }
-    }//GEN-LAST:event_formKeyReleased
+    }//GEN-LAST:event_comboClienteMouseClicked
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
         // TODO add your handling code here:
-        Fornecedor fornecedor = lista.get(comboFornecedor.getSelectedIndex());
+        Cliente cliente = lista.get(comboCliente.getSelectedIndex());
         boolean valida = false;
-        int op = JOptionPane.showConfirmDialog(rootPane, "Tem certeza que deseja excluir o fornecedor "+ fornecedor.getNomeFantasia() + "?");
+        int op = JOptionPane.showConfirmDialog(rootPane, "Tem certeza que deseja excluir o cliente "+ cliente.getNomeFantasia() + "?");
         if(op == 0){
             try {
-                if(listaMateriaPrima.isEmpty())
-                    valida = controladorFornecedor.excluir(fornecedor);
-                else
-                    JOptionPane.showMessageDialog(rootPane, "Impossivel excluir, há matérias primas vinculadas a este fornecedor.");
+                valida = controladorCliente.excluir(cliente);
             } catch (ClassNotFoundException | SQLException ex) {
-                Logger.getLogger(UIExcluirFornecedor.class.getName()).log(Level.SEVERE, null, ex);
-            }     
+                Logger.getLogger(UIExcluirCliente.class.getName()).log(Level.SEVERE, null, ex);
+            }
             if(valida){
-                JOptionPane.showMessageDialog(rootPane, "Fornecedor excluido com sucesso!");
+                JOptionPane.showMessageDialog(rootPane, "Cliente excluido com sucesso!");
                 this.dispose();
             } else {
-                JOptionPane.showMessageDialog(rootPane, "Fornecedor não excluido.");            
+                JOptionPane.showMessageDialog(rootPane, "Cliente não excluido.");
             }
         }
     }//GEN-LAST:event_btnExcluirActionPerformed
-
-    private void comboFornecedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboFornecedorMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_comboFornecedorMouseClicked
-
-    private void comboFornecedorItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboFornecedorItemStateChanged
-        try {
-            // TODO add your handling code here:
-            listaMateriaPrima = controladorMateriaPrima.consultar(1, lista.get(comboFornecedor.getSelectedIndex()).getId());
-        } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(UIExcluirFornecedor.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        String[] columnNames = {"Id",
-            "Nome",
-            "Fornecedor",
-            "Unidade",
-            "Valor Unt.",
-            "Descrição"};
-        Object[][] data = null;
-        DefaultTableModel dtm = new DefaultTableModel(data, columnNames);
-        
-         
-        int n = listaMateriaPrima.size();
-        for(int i=0; i<n; i++){
-            Object[] linha = {listaMateriaPrima.get(i).getId().toString(), 
-                              listaMateriaPrima.get(i).getNome(), 
-                              listaMateriaPrima.get(i).getFornecedor().getRazaoSocial(),
-                              listaMateriaPrima.get(i).getUnd(),
-                              listaMateriaPrima.get(i).getValorUnd(),
-                              listaMateriaPrima.get(i).getDescricao()};
-            dtm.addRow(linha);
-        }
-        
-        
-        tblMateriaPrima.setModel(dtm);
-    }//GEN-LAST:event_comboFornecedorItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -245,24 +187,23 @@ public class UIExcluirFornecedor extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(UIExcluirFornecedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UIExcluirCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(UIExcluirFornecedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UIExcluirCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(UIExcluirFornecedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UIExcluirCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(UIExcluirFornecedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UIExcluirCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
             public void run() {
                 try {
-                    new UIExcluirFornecedor().setVisible(true);
+                    new UIExcluirCliente().setVisible(true);
                 } catch (ClassNotFoundException | SQLException ex) {
-                    Logger.getLogger(UIExcluirFornecedor.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(UIExcluirCliente.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
@@ -270,7 +211,7 @@ public class UIExcluirFornecedor extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnExcluir;
-    private javax.swing.JComboBox comboFornecedor;
+    private javax.swing.JComboBox comboCliente;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;

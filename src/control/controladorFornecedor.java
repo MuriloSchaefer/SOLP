@@ -94,8 +94,9 @@ public class controladorFornecedor {
         for(int i=0; i<n; i++){ // percorre a lista
             EndConn.excluir(enderecos.get(i)); //exclui do banco o endereço na posição i da lista
         }
+        boolean valida = FornecedorConn.excluir(fornecedor);
         EndConn.destroy();
         FornecedorConn.destroy();
-        return(FornecedorConn.excluir(fornecedor)); //exclui o fornecedor e então retorna true ou false;
+        return(valida); //exclui o fornecedor e então retorna true ou false;
     }
 }

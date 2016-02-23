@@ -512,6 +512,11 @@ public class UIPrincipal extends javax.swing.JFrame {
         jMenu6.add(jMenuItem9);
 
         jMenuItem10.setText("Excluir");
+        jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem10ActionPerformed(evt);
+            }
+        });
         jMenu6.add(jMenuItem10);
 
         Menu.add(jMenu6);
@@ -765,6 +770,15 @@ public class UIPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         new UIConsultarCliente().setVisible(true);
     }//GEN-LAST:event_jMenuItem9ActionPerformed
+
+    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
+        try {
+            // TODO add your handling code here:
+            new UIExcluirCliente().setVisible(true);
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(UIPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jMenuItem10ActionPerformed
 
     /**
      * @param args the command line arguments
